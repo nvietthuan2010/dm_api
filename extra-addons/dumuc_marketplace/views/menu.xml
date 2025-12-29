@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <menuitem id="menu_dumuc_marketplace_root"
+                name="DuMuc Marketplace"
+                sequence="10"  groups="dumuc_marketplace.group_dumuc_admin"/>
+
+        <!-- Listing -->
+        <menuitem id="menu_dumuc_listing"
+                name="Quản lý tin đăng"
+                parent="menu_dumuc_marketplace_root"
+                action="action_dumuc_listing"
+                sequence="10"/>
+
+        <!-- Violation -->
+        <menuitem id="menu_dumuc_violation"
+                name="Báo cáo vi phạm"
+                parent="menu_dumuc_marketplace_root"
+                action="action_dumuc_violation"
+                sequence="30"/>
+
+        <!-- Inspection -->
+        <menuitem id="menu_dumuc_inspection_root"
+                name="Kiểm định xe"
+                parent="menu_dumuc_marketplace_root"
+                sequence="20"/>
+
+        <menuitem id="menu_dumuc_inspection_booking"
+                name="Yêu cầu kiểm định"
+                parent="menu_dumuc_inspection_root"
+                action="action_dumuc_inspection_booking"/>
+
+        <menuitem id="menu_dumuc_inspection_result"
+                name="Hồ sơ kiểm định"
+                parent="menu_dumuc_inspection_root"
+                action="action_dumuc_inspection_result"/>
+
+        <!-- Finance -->
+        <menuitem id="menu_dumuc_finance_root"
+                name="Thanh toán - Gói dịch vụ"
+                parent="menu_dumuc_marketplace_root"
+                sequence="40"/>
+
+        <menuitem id="menu_dumuc_service_package"
+                name="Gói dịch vụ"
+                parent="menu_dumuc_finance_root"
+                action="action_dumuc_service_package"/>
+
+        <menuitem id="menu_dumuc_transaction"
+                name="Giao dịch ví"
+                parent="menu_dumuc_finance_root"
+                action="action_dumuc_transaction"/>
+
+        <!-- Evaluator -->
+        <menuitem id="menu_dumuc_evaluator_root"
+                name="Đánh giá viên"
+                parent="menu_dumuc_marketplace_root"
+                sequence="50"/>
+
+        <menuitem id="menu_dumuc_evaluator_profile"
+                name="Hồ sơ đánh giá viên"
+                parent="menu_dumuc_evaluator_root"
+                action="action_dumuc_evaluator"
+                sequence="10"/>
+
+        <menuitem id="menu_dumuc_evaluator_review"
+                name="Đánh giá khách hàng"
+                parent="menu_dumuc_evaluator_root"
+                action="action_dumuc_evaluator_review"
+                sequence="20"/>
+
+        <!-- Master data -->
+        <menuitem id="menu_dumuc_master_root"
+                name="Dữ liệu gốc"
+                parent="menu_dumuc_marketplace_root"
+                sequence="70"/>
+
+        <menuitem id="menu_dumuc_vehicle_brand"
+                name="Hãng xe"
+                parent="menu_dumuc_master_root"
+                action="action_dumuc_vehicle_brand"
+                sequence="10"/>
+
+        <menuitem id="menu_dumuc_vehicle_model"
+                name="Dòng xe"
+                parent="menu_dumuc_master_root"
+                action="action_dumuc_vehicle_model"
+                sequence="20"/>
+
+        <menuitem id="menu_dumuc_reject_reason"
+                name="Lý do từ chối"
+                parent="menu_dumuc_master_root"
+                action="action_dumuc_reject_reason"
+                sequence="30"/>
+
+        <menuitem id="menu_dumuc_inspection_root"
+                name="Hạng mục kiểm định"
+                parent="menu_dumuc_marketplace_root"
+                sequence="60"/>
+
+        <menuitem id="menu_dumuc_inspection_template"
+                name="Bộ kiểm định"
+                parent="menu_dumuc_inspection_root"
+                action="action_dumuc_inspection_template"/>
+
+        <menuitem id="menu_dumuc_inspection_group"
+                name="Nhóm kiểm tra"
+                parent="menu_dumuc_inspection_root"
+                action="action_dumuc_inspection_group"/>
+
+        <menuitem id="menu_dumuc_inspection_criteria"
+                name="Hạng mục kiểm tra"
+                parent="menu_dumuc_inspection_root"
+                action="action_dumuc_inspection_criteria"/>
+
+        <menuitem id="menu_dumuc_moderation_root" name="Kiểm duyệt" parent="menu_dumuc_marketplace_root" sequence="15"/>
+        <menuitem id="menu_dumuc_moderation_pending" name="Tin chờ duyệt" parent="menu_dumuc_moderation_root" action="action_dumuc_listing_pending"/>
+</odoo>

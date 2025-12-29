@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_dumuc_evaluator_tree" model="ir.ui.view">
+        <field name="name">res.partner.dumuc.evaluator.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="dumuc_evaluator_level"/>
+                <field name="dumuc_evaluator_total_checks"/>
+                <field name="dumuc_evaluator_average_rating"/>
+                <field name="star_rating"/>
+                <field name="phone"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_dumuc_evaluator_form" model="ir.ui.view">
+        <field name="name">res.partner.dumuc.evaluator.form</field>
+        <field name="model">res.partner</field>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="dumuc_evaluator_level"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="dumuc_evaluator_total_checks"/>
+                            <field name="dumuc_evaluator_average_rating"/>
+                            <field name="star_rating"/>
+                        </group>
+                    </group>
+
+                    <group string="Chứng chỉ">
+                        <field name="dumuc_evaluator_certifications"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Đánh giá khách hàng">
+                            <field name="dumuc_evaluator_review_ids">
+                                <tree create="false" delete="false" edit="false">
+                                    <field name="create_date"/>
+                                    <field name="partner_id"/>
+                                    <field name="rating"/>
+                                    <field name="comment"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Hồ sơ kiểm định">
+                            <field name="dumuc_inspection_result_ids">
+                                <tree create="false" delete="false" edit="false">
+                                    <field name="create_date"/>
+                                    <field name="booking_id"/>
+                                    <field name="overall_quality"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_dumuc_evaluator" model="ir.actions.act_window">
+        <field name="name">Hồ sơ đánh giá viên</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('dumuc_is_evaluator','=',True)]</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_dumuc_evaluator_tree')}),
+            (0, 0, {'view_mode': 'kanban'}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_dumuc_evaluator_form')})]"/>
+    </record>
+
+</odoo>

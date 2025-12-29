@@ -1,0 +1,28 @@
+<odoo>
+    <record id="view_recruit_config_form" model="ir.ui.view">
+        <field name="name">dumuc.recruit.config.form</field>
+        <field name="model">dumuc.recruit.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <group string="Geo Distance">
+                    <field name="geo_mode"/>
+                    <field name="google_api_key" attrs="{'invisible': [('geo_mode','!=','drive_google')]}"/>
+                    <field name="osrm_url" attrs="{'invisible': [('geo_mode','!=','drive_osrm')]}"/>
+                    <field name="geo_cache_expire_days"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_recruit_config" model="ir.actions.act_window">
+        <field name="name">Cấu hình tuyển dụng</field>
+        <field name="res_model">dumuc.recruit.config</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem id="menu_recruit_config"
+              name="Cấu hình tuyển dụng"
+              parent="menu_recruit_root"
+              action="action_recruit_config"
+              groups="base.group_system"/>
+</odoo>

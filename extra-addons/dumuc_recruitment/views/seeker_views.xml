@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_dumuc_seeker_tree" model="ir.ui.view">
+        <field name="name">dumuc.seeker.tree</field>
+        <field name="model">dumuc.seeker</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="full_name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="category_id"/>
+                <field name="exp_years"/>
+                <field name="is_public"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_dumuc_seeker_form" model="ir.ui.view">
+        <field name="name">dumuc.seeker.form</field>
+        <field name="model">dumuc.seeker</field>
+        <field name="arch" type="xml">
+            <form string="Ứng viên">
+                <sheet>
+                    <group>
+                        <field name="full_name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="user_id"/>
+                    </group>
+
+                    <group>
+                        <field name="category_id"/>
+                        <field name="exp_years"/>
+                        <field name="location"/>
+                        <field name="is_public"/>
+                    </group>
+
+                    <group>
+                        <field name="avatar"/>
+                    </group>
+
+                    <group>
+                        <field name="headline"/>
+                    </group>
+
+                    <notebook>
+
+                        <page string="Kỹ năng">
+                            <field name="skill_ids" widget="many2many_tags"/>
+                        </page>
+
+                        <page string="Kinh nghiệm">
+                            <field name="experience_ids">
+                                <tree>
+                                    <field name="company_name"/>
+                                    <field name="job_title"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Ứng tuyển">
+                            <field name="application_ids"/>
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dumuc_seeker" model="ir.actions.act_window">
+        <field name="name">Ứng viên</field>
+        <field name="res_model">dumuc.seeker</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_seeker_tree"/>
+    </record>
+
+    <menuitem id="menu_dumuc_seeker" name="Ứng viên"
+              parent="menu_dumuc_recruitment_root"
+              action="action_dumuc_seeker"/>
+
+</odoo>

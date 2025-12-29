@@ -1,0 +1,12 @@
+<odoo>
+    <data noupdate="1">
+        <record id="company_demo" model="dumuc.company">
+            <field name="name">Garage Demo</field>
+            <field name="user_id" ref="user_employer"/>
+            <field name="phone">0901234567</field>
+            <field name="email">garage@demo.vn</field>
+            <field name="is_verified">True</field>
+            <field name="is_active">True</field>
+        </record>
+    </data>
+</odoo>

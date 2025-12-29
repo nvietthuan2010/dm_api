@@ -1,0 +1,28 @@
+<odoo>
+    <data noupdate="1">
+        <!-- ADMIN -->
+        <record id="user_admin" model="res.users">
+            <field name="name">Admin Recruit</field>
+            <field name="login">admin@dumuc.vn</field>
+            <field name="password">admin123</field>
+            <field name="groups_id" eval="[(4, ref('dumuc_recruitment.group_recruit_admin'))]"/>
+        </record>
+
+        <!-- EMPLOYER -->
+        <record id="user_employer" model="res.users">
+            <field name="name">Employer Demo</field>
+            <field name="login">employer@dumuc.vn</field>
+            <field name="password">123456</field>
+            <field name="groups_id" eval="[(4, ref('dumuc_recruitment.group_recruit_employer'))]"/>
+        </record>
+
+        <!-- SEEKER -->
+        <record id="user_seeker" model="res.users">
+            <field name="name">Seeker Demo</field>
+            <field name="login">seeker@dumuc.vn</field>
+            <field name="password">123456</field>
+            <field name="groups_id" eval="[(4, ref('dumuc_recruitment.group_recruit_seeker'))]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,26 @@
+<odoo>
+    <data noupdate="1">
+    <!-- Garage -->
+    <record id="skill_cat_electric" model="dumuc.skill.category">
+        <field name="name">Hệ thống Điện</field>
+        <field name="category_id" ref="dumuc_recruitment.job_category_garage"/>
+    </record>
+
+    <record id="skill_cat_engine" model="dumuc.skill.category">
+        <field name="name">Hệ thống Máy</field>
+        <field name="category_id" ref="dumuc_recruitment.job_category_garage"/>
+    </record>
+
+    <!-- Driver -->
+    <record id="skill_cat_license" model="dumuc.skill.category">
+        <field name="name">Loại Bằng Lái</field>
+        <field name="category_id" ref="dumuc_recruitment.job_category_driver"/>
+    </record>
+
+    <!-- Car Care -->
+    <record id="skill_cat_wash" model="dumuc.skill.category">
+        <field name="name">Kỹ thuật Rửa xe</field>
+        <field name="category_id" ref="dumuc_recruitment.job_category_carcare"/>
+    </record>
+    </data>
+</odoo>

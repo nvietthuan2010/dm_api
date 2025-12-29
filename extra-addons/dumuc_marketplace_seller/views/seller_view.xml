@@ -1,0 +1,101 @@
+<odoo>
+    <record id="view_listing_seller_tree" model="ir.ui.view">
+        <field name="name">dumuc.listing.seller.list</field>
+        <field name="model">dumuc.listing</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="state == 'sold'" decoration-danger="state == 'rejected'">
+                <field name="name" string="Tiêu đề"/>
+                
+                <field name="currency_id" column_invisible="True"/>
+                <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                
+                <field name="state" widget="badge" 
+                       decoration-info="state == 'draft'" 
+                       decoration-warning="state == 'pending'" 
+                       decoration-success="state == 'active'"/>
+                
+                <field name="posted_at" optional="show"/>
+
+                <button name="action_submit_for_review"
+                        string="Gửi duyệt"
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-paper-plane"
+                        invisible="state not in ['draft', 'rejected']"/>
+
+                <button name="action_mark_as_sold"
+                        string="Đã bán"
+                        type="object"
+                        class="btn-success"
+                        icon="fa-check-square-o"
+                        invisible="state != 'active'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_listing_seller_form" model="ir.ui.view">
+        <field name="name">dumuc.listing.seller.form</field>
+        <field name="model">dumuc.listing</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit_for_review"
+                            string="Gửi kiểm duyệt"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state not in ['draft', 'rejected']"/>
+
+                    <button name="action_mark_as_sold"
+                            string="Đánh dấu đã bán"
+                            type="object"
+                            class="btn-success"
+                            invisible="state != 'active'"/>
+                    
+                    <field name="state" widget="statusbar" statusbar_visible="draft,pending,active,sold"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Ví dụ: Toyota Vios 2018 bản G..."/></h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin xe">
+                            <field name="brand_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="model_id" options="{'no_create': True, 'no_open': True}" domain="[('brand_id', '=', brand_id)]"/>
+                            <field name="year"/>
+                            <field name="mileage"/>
+                        </group>
+                        <group string="Giá bán">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Hình ảnh">
+                            <field name="image_ids" widget="many2many_binary"/>
+                        </page>
+
+                        <page string="Mô tả chi tiết">
+                            <field name="description" placeholder="Mô tả tình trạng xe, lịch sử bảo dưỡng..." widget="html"/>
+                        </page>
+
+                        <page string="Phản hồi từ Admin" invisible="state != 'rejected'">
+                            <group>
+                                <field name="state" readonly="1"/>
+                                <field name="reject_reason_id" readonly="1" options="{'no_open': True}"/>
+                                <field name="moderation_note" readonly="1"/>
+                            </group>
+                            <div class="alert alert-danger" role="alert">
+                                Tin của bạn bị từ chối. Vui lòng sửa lại thông tin theo lý do trên và gửi duyệt lại.
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+
+    <record id="view_moderation_tree" model="ir.ui.view">
+        <field name="name">dumuc.moderation.tree</field>
+        <field name="model">dumuc.moderation.record</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="target_model"/>
+                <field name="target_id"/>
+                <field name="action"/>
+                <field name="reviewer_id"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,105 @@
+<odoo>
+    <record id="view_admin_user_tree" model="ir.ui.view">
+        <field name="name">res.partner.admin.list</field>
+        <field name="model">res.partner</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="dumuc_user_type"/>
+                <field name="dumuc_salon_verified" widget="boolean_toggle"/>
+                <field name="dumuc_wallet_balance" widget="monetary"/>
+
+                <button name="action_verify_salon"
+                        string="Xác thực Salon"
+                        type="object"
+                        class="btn-primary"
+                        groups="dumuc_marketplace.group_dumuc_admin"
+                        invisible="dumuc_user_type != 'salon'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_admin_user_form" model="ir.ui.view">
+        <field name="name">res.partner.admin.form</field>
+        <field name="model">res.partner</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_verify_salon"
+                            string="Xác thực Salon"
+                            type="object"
+                            class="btn-primary"
+                            groups="dumuc_marketplace.group_dumuc_admin"
+                            invisible="dumuc_user_type != 'salon' or dumuc_salon_verified == True"/>
+                            </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Tên người dùng..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="email"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="dumuc_user_type"/>
+                            <field name="dumuc_wallet_balance" readonly="1" widget="monetary"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Thông tin Salon"
+                              invisible="dumuc_user_type != 'salon'">
+                            <group>
+                                <field name="dumuc_salon_name"/>
+                                <field name="dumuc_salon_address"/>
+                                <field name="dumuc_salon_verified" widget="boolean_toggle"/>
+                            </group>
+                        </page>
+
+                        <page string="Hồ sơ Đánh giá viên"
+                              invisible="dumuc_user_type != 'evaluator'">
+                            <group>
+                                <field name="dumuc_evaluator_level"/>
+                                <field name="dumuc_evaluator_average_rating" readonly="1" widget="priority"/>
+                                <field name="dumuc_evaluator_total_checks" readonly="1"/>
+                            </group>
+                        </page>
+
+                        <page string="Hoạt động đã lưu">
+                            <field name="saved_listing_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dumuc_admin_users" model="ir.actions.act_window">
+        <field name="name">Quản lý người dùng</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+
+        <!-- Chỉ lấy partner có liên quan DuMuc -->
+        <field name="domain">[
+            ('dumuc_user_type','!=',False)
+        ]</field>
+
+        <field name="context">
+            {
+                'search_default_dumuc_user_type': 1
+            }
+        </field>
+        <field name="view_ids" eval="[
+            (0, 0, {'view_mode':'tree', 'view_id': ref('view_admin_user_tree')}),
+            (0, 0, {'view_mode':'form', 'view_id': ref('view_admin_user_form')})
+        ]"/>
+    </record>
+</odoo>

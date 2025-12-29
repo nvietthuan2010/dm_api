@@ -1,0 +1,25 @@
+<odoo>
+    <!-- ================= ADMIN ================= -->
+
+    <record id="group_recruit_admin" model="res.groups">
+        <field name="name">Recruitment / Admin</field>
+        <field name="category_id" ref="base.module_category_administration"/>
+    </record>
+
+    <record id="group_recruit_moderator" model="res.groups">
+        <field name="name">Recruitment / Moderator</field>
+        <field name="category_id" ref="base.module_category_administration"/>
+    </record>
+
+    <!-- ================= BUSINESS ================= -->
+
+    <record id="group_recruit_employer" model="res.groups">
+        <field name="name">Recruitment / Employer</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+
+    <record id="group_recruit_seeker" model="res.groups">
+        <field name="name">Recruitment / Job Seeker</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+</odoo>

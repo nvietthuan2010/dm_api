@@ -1,0 +1,92 @@
+<odoo>
+<data noupdate="1">
+
+    <record id="rr_listing_admin" model="ir.rule">
+        <field name="name">Admin – All Listings</field>
+        <field name="model_id" ref="model_dumuc_listing"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_admin'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <record id="rr_listing_moderator_read" model="ir.rule">
+    <field name="name">Moderator – Read All Listings</field>
+        <field name="model_id" ref="model_dumuc_listing"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_moderator'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <record id="rr_listing_seller_own" model="ir.rule">
+        <field name="name">Seller – Own Listings Only</field>
+        <field name="model_id" ref="model_dumuc_listing"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_seller'))]"/>
+        <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+    </record>
+
+    <record id="rr_listing_evaluator_block" model="ir.rule">
+        <field name="name">Evaluator – No Listing Access</field>
+        <field name="model_id" ref="model_dumuc_listing"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_evaluator'))]"/>
+        <field name="domain_force">[(0,'=',1)]</field>
+    </record>
+
+    <record id="rr_listing_history_seller" model="ir.rule">
+        <field name="name">Seller – Own Listing History</field>
+        <field name="model_id" ref="model_dumuc_listing_history"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_seller'))]"/>
+        <field name="domain_force">
+            [('listing_id.partner_id','=',user.partner_id.id)]
+        </field>
+    </record>
+
+    <record id="rr_booking_admin" model="ir.rule">
+        <field name="name">Admin – All Bookings</field>
+        <field name="model_id" ref="model_dumuc_inspection_booking"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_admin')),
+                                    (4, ref('dumuc_marketplace.group_dumuc_moderator'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <record id="rr_booking_seller" model="ir.rule">
+        <field name="name">Seller – Own Listing Bookings</field>
+        <field name="model_id" ref="model_dumuc_inspection_booking"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_seller'))]"/>
+        <field name="domain_force">
+            [('listing_id.partner_id','=',user.partner_id.id)]
+        </field>
+    </record>
+
+    <record id="rr_inspection_result_evaluator" model="ir.rule">
+        <field name="name">Evaluator – Own Results</field>
+        <field name="model_id" ref="model_dumuc_inspection_result"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_evaluator'))]"/>
+        <field name="domain_force">
+            [('evaluator_id','=',user.partner_id.id)]
+        </field>
+    </record>
+
+    <record id="rr_inspection_result_seller" model="ir.rule">
+        <field name="name">Seller – Own Listing Report</field>
+        <field name="model_id" ref="model_dumuc_inspection_result"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_seller'))]"/>
+        <field name="domain_force">
+            [('booking_id.listing_id.partner_id','=',user.partner_id.id)]
+        </field>
+    </record>
+
+    <record id="rr_evaluator_review" model="ir.rule">
+        <field name="name">Evaluator – Own Reviews</field>
+        <field name="model_id" ref="model_dumuc_evaluator_review"/>
+        <field name="groups" eval="[(4, ref('dumuc_marketplace.group_dumuc_evaluator'))]"/>
+        <field name="domain_force">
+            [('evaluator_id','=',user.partner_id.id)]
+        </field>
+    </record>
+
+    
+
+</data>
+
+</odoo>

@@ -1,0 +1,36 @@
+<odoo>
+
+    <!-- ADMIN -->
+    <record id="group_dumuc_moderator" model="res.groups">
+        <field name="name">DuMuc Kiểm duyệt viên</field>
+        <field name="category_id" ref="base.module_category_administration"/>
+        
+    </record>
+
+    <record id="group_dumuc_admin" model="res.groups">
+        <field name="name">DuMuc Admin</field>
+        <field name="category_id" ref="base.module_category_administration"/>
+        <field name="implied_ids" eval="[(4, ref('group_dumuc_moderator'))]"/>
+    </record>
+
+    
+
+    <!-- SELLER -->
+    <record id="group_dumuc_seller_private" model="res.groups">
+        <field name="name">DuMuc Người bán cá nhân</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+    </record>
+
+    <record id="group_dumuc_seller_salon" model="res.groups">
+        <field name="name">DuMuc Salon / Garage</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+        <field name="implied_ids" eval="[(4, ref('group_dumuc_seller_private'))]"/>
+    </record>
+
+    <!-- EVALUATOR -->
+    <record id="group_dumuc_evaluator" model="res.groups">
+        <field name="name">DuMuc Đánh giá viên</field>
+        <field name="category_id" ref="base.module_category_services"/>
+    </record>
+
+</odoo>

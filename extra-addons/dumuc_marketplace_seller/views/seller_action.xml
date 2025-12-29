@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_seller_listing_my" model="ir.actions.act_window">
+      <field name="name">Tin đăng của tôi</field>
+      <field name="res_model">dumuc.listing</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('partner_id','=',uid)]</field>
+      <field name="view_ids" eval="[
+            (0, 0, {'view_mode':'tree','view_id': ref('view_listing_seller_tree')}),
+            (0, 0, {'view_mode':'form','view_id': ref('view_listing_seller_form')})
+        ]"/>
+  </record>
+
+  <record id="action_seller_listing_create" model="ir.actions.act_window">
+      <field name="name">Đăng tin mới</field>
+      <field name="res_model">dumuc.listing</field>
+      <field name="view_mode">form</field>
+      <field name="context">
+          {
+              'default_partner_id': uid,
+              'default_state': 'draft'
+          }
+      </field>
+  </record>
+
+  <record id="action_seller_saved_listings" model="ir.actions.act_window">
+      <field name="name">Tin đã lưu</field>
+      <field name="res_model">dumuc.listing</field>
+      <field name="view_mode">tree,form</field>
+  </record>
+
+</odoo>

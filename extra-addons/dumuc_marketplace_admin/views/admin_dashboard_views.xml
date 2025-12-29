@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- <record id="action_dumuc_admin_dashboard" model="ir.actions.client">
+    <field name="name">Bảng điều khiển DuMuc</field>
+    <field name="tag">dumuc_admin_dashboard</field>
+  </record> -->
+
+  <!-- pending action (reuse from dumuc_marketplace module) -->
+  <record id="action_admin_listing_pending" model="ir.actions.act_window">
+    <field name="name">Tin chờ duyệt</field>
+    <field name="res_model">dumuc.listing</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('state','=','pending')]</field>
+  </record>
+
+  <!-- inspection admin placeholder -->
+  <record id="action_admin_inspection_booking" model="ir.actions.act_window">
+    <field name="name">Quản lý kiểm định</field>
+    <field name="res_model">dumuc.inspection.result</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <!-- finance overview placeholder -->
+  <record id="action_admin_transaction" model="ir.actions.act_window">
+    <field name="name">Tổng quan tài chính</field>
+    <field name="res_model">dumuc.transaction</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+</odoo>

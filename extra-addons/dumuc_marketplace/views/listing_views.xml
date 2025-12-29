@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+
+    <record id="view_dumuc_listing_tree" model="ir.ui.view">
+        <field name="name">dumuc.listing.tree</field>
+        <field name="model">dumuc.listing</field>
+        <field name="arch" type="xml">
+            <tree string="Tin đăng">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="price"/>
+                <field name="state"/>
+                <field name="posted_at"/>
+                <field name="is_featured"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_dumuc_listing_form" model="ir.ui.view">
+        <field name="name">dumuc.listing.form</field>
+        <field name="model">dumuc.listing</field>
+        <field name="arch" type="xml">
+            <form string="Tin đăng">
+                <header>
+                    <button name="action_submit_for_review" string="Gửi kiểm duyệt" type="object" class="btn-primary" modifiers="{'invisible': [['state','not in',['draft','rejected']]]}"/>
+                    <button name="action_approve" string="Duyệt" type="object" class="btn-success" modifiers="{'invisible': [['state','!=','pending']]]}"/>
+                    <!-- <button name="action_reject" string="Từ chối" type="object" class="btn-danger" modifiers="{'invisible': [['state','!=','pending']]]}"/> -->
+                    <button name="%(action_open_listing_reject_wizard)d" string="Từ chối" type="action" class="btn-danger" modifiers="{'invisible': [['state','!=','pending']]]}"/>
+
+                    <button name="action_suspend" string="Chặn tin" type="object" class="btn-secondary" modifiers="{'invisible': [['state','in',['suspended']]]}"/>
+                    <button name="action_restore" string="Khôi phục" type="object" class="btn-default" modifiers="{'invisible': [['state','!=','suspended']]]}"/>
+                    
+                    <field name="state" widget="statusbar"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="price"/>
+                        </group>
+                        <group>
+                            <field name="brand_id"/>
+                            <field name="model_id"/>
+                            <field name="year"/>
+                            <field name="mileage"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Mô tả">
+                            <field name="description"/>
+                        </page>
+
+                        <page string="Hình ảnh">
+                            <field name="cover_image" widget="image" />
+                            <field name="image_ids">
+                                <tree editable="bottom">
+                                    <field name="image" widget="image"/>
+                                    <field name="caption"/>
+                                    <field name="sequence"/>
+                                    <field name="is_cover"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Moderation">
+                            <group>
+                                <field name="moderation_admin_id" readonly="1"/>
+                                <field name="moderation_time" readonly="1"/>
+                                <field name="reject_reason_id"/>
+                                <field name="moderation_note"/>
+                            </group>
+                        </page>
+
+                        <page string="Lịch sử">
+                            <field name="history_ids">
+                                <tree create="0" edit="0" delete="0">
+                                    <field name="action"/>
+                                    <field name="admin_id"/>
+                                    <field name="note"/>
+                                    <field name="create_date"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="SEO &amp; Hiển thị">
+                            <group>
+                                <field name="is_featured"/>
+                                <field name="featured_until"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_dumuc_listing" model="ir.actions.act_window">
+        <field name="name">Tin đăng</field>
+        <field name="res_model">dumuc.listing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_listing_tree"/>
+    </record>
+
+    <record id="view_dumuc_listing_history_tree" model="ir.ui.view">
+        <field name="name">dumuc.listing.history.tree</field>
+        <field name="model">dumuc.listing.history</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="create_date"/>
+                <field name="listing_id"/>
+                <field name="action"/>
+                <field name="admin_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_dumuc_listing_history" model="ir.actions.act_window">
+        <field name="name">Lịch sử Tin</field>
+        <field name="res_model">dumuc.listing.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_listing_history_tree"/>
+    </record>
+
+    <record id="view_dumuc_listing_image_tree" model="ir.ui.view">
+        <field name="name">dumuc.listing.image.tree</field>
+        <field name="model">dumuc.listing.image</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="listing_id"/>
+                <field name="image" widget="image"/>
+                <field name="caption"/>
+                <field name="sequence"/>
+                <field name="is_cover"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_dumuc_listing_image" model="ir.actions.act_window">
+        <field name="name">Ảnh Tin đăng</field>
+        <field name="res_model">dumuc.listing.image</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_listing_image_tree"/>
+    </record>
+    
+    <record id="view_dumuc_reject_reason_tree" model="ir.ui.view">
+        <field name="name">dumuc.listing.reject.reason.tree</field>
+        <field name="model">dumuc.listing.reject.reason</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_dumuc_reject_reason" model="ir.actions.act_window">
+        <field name="name">Lý do từ chối</field>
+        <field name="res_model">dumuc.listing.reject.reason</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_reject_reason_tree"/>
+    </record>
+
+    <record id="action_dumuc_listing_pending" model="ir.actions.act_window">
+        <field name="name">Tin chờ duyệt</field>
+        <field name="res_model">dumuc.listing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','pending')]</field>
+    </record>
+</odoo>

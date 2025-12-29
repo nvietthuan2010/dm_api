@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Nhóm quản trị hệ thống tuyển dụng -->
+    <record id="group_dumuc_recruit_admin" model="res.groups">
+        <field name="name">Recruitment Admin</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <!-- Nhóm nhà tuyển dụng -->
+    <record id="group_dumuc_recruit_employer" model="res.groups">
+        <field name="name">Recruitment Employer</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <!-- Nhóm ứng viên -->
+    <record id="group_dumuc_recruit_seeker" model="res.groups">
+        <field name="name">Recruitment Seeker</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+</odoo>

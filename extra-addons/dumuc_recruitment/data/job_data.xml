@@ -1,0 +1,28 @@
+<odoo>
+<data noupdate="1">
+    <record id="demo_job_01" model="dumuc.job">
+        <field name="title">Tuyển Kỹ thuật viên Ô tô - Chuyên Hệ thống Điện</field>
+        <field name="description">Garage Hoàng Minh cần tuyển kỹ thuật viên...</field>
+        <field name="salary_min">10000000</field>
+        <field name="salary_max">15000000</field>
+        <field name="salary_unit">month</field>
+        <field name="employment_type">full_time</field>
+        <field name="location">Quận 1, TP.HCM</field>
+        <field name="status">active</field>
+        <field name="company_id" ref="dumuc_recruitment.demo_company_01"/>
+        <field name="category_id" ref="dumuc_recruitment.job_category_garage"/>
+    </record>
+
+    <record id="demo_job_02" model="dumuc.job">
+        <field name="title">Tuyển Tài xế Xe Tải - Bằng C</field>
+        <field name="salary_min">15000000</field>
+        <field name="salary_max">20000000</field>
+        <field name="salary_unit">month</field>
+        <field name="employment_type">full_time</field>
+        <field name="location">Quận 2, TP.HCM</field>
+        <field name="status">active</field>
+        <field name="company_id" ref="dumuc_recruitment.demo_company_02"/>
+        <field name="category_id" ref="dumuc_recruitment.job_category_driver"/>
+    </record>
+    </data>
+</odoo>

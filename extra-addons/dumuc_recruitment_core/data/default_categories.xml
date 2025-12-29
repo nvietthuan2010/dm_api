@@ -1,0 +1,27 @@
+<odoo>
+
+    <record id="industry_garage" model="dumuc.industry">
+        <field name="name">Dịch vụ Garage & sửa chữa ô tô</field>
+    </record>
+
+    <record id="category_technician" model="dumuc.category">
+        <field name="name">Kỹ thuật viên</field>
+        <field name="industry_id" ref="industry_garage"/>
+    </record>
+
+    <record id="category_driver" model="dumuc.category">
+        <field name="name">Tài xế</field>
+        <field name="industry_id" ref="industry_garage"/>
+    </record>
+
+    <record id="position_engineer" model="dumuc.position">
+        <field name="name">Thợ sửa chữa ô tô</field>
+        <field name="category_id" ref="category_technician"/>
+    </record>
+
+    <record id="position_driver" model="dumuc.position">
+        <field name="name">Tài xế ô tô con</field>
+        <field name="category_id" ref="category_driver"/>
+    </record>
+
+</odoo>

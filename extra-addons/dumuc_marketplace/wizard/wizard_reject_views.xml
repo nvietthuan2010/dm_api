@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_wizard_listing_reject_form" model="ir.ui.view">
+    <field name="name">dumuc.listing.reject.wizard.form</field>
+    <field name="model">dumuc.listing.reject.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Từ chối tin đăng">
+        <group>
+          <field name="listing_id" readonly="1"/>
+          <field name="reason_id"/>
+          <field name="note"/>
+          <field name="create_violation"/>
+        </group>
+        <footer>
+          <button string="Hủy" class="btn-default" special="cancel"/>
+          <button string="Xác nhận từ chối" type="object" name="action_confirm_reject" class="btn-primary"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <!-- server action to open wizard from listing form -->
+  <record id="action_open_listing_reject_wizard" model="ir.actions.act_window">
+    <field name="name">Từ chối tin</field>
+    <field name="res_model">dumuc.listing.reject.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="context">{'default_listing_id': active_id}</field>
+  </record>
+</odoo>

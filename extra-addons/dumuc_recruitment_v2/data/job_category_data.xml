@@ -1,0 +1,24 @@
+<odoo>
+    <data noupdate="1">
+    <record id="job_category_garage" model="dumuc.job.category">
+        <field name="name">Kỹ thuật viên Garage</field>
+        <field name="slug">ky-thuat-vien-garage</field>
+        <field name="is_active">True</field>
+        <field name="icon">🔧</field>
+    </record>
+
+    <record id="job_category_driver" model="dumuc.job.category">
+        <field name="name">Tài xế</field>
+        <field name="slug">tai-xe</field>
+        <field name="is_active">True</field>
+        <field name="icon">🚗</field>
+    </record>
+
+    <record id="job_category_carcare" model="dumuc.job.category">
+        <field name="name">Rửa xe &amp; Chăm sóc</field>
+        <field name="slug">rua-xe-cham-soc</field>
+        <field name="is_active">True</field>
+        <field name="icon">🧼</field>
+    </record>
+    </data>
+</odoo>

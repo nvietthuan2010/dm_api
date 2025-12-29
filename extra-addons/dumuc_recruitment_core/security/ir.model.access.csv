@@ -1,0 +1,65 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+# Recruitment domain
+access_admin_job,dumuc.access.admin.job,hr.model_hr_job,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_applicant,dumuc.access.admin.applicant,hr.model_hr_applicant,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_screening,dumuc.access.admin.screening,dumuc_recruitment_core.model_dumuc_screening_question,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_scoring,dumuc.access.admin.scoring,dumuc_recruitment_core.model_dumuc_scoring_rule,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_matching,dumuc.access.admin.matching,dumuc_recruitment_core.model_dumuc_matching_score,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+
+# Employer domain
+access_admin_garage,dumuc.access.admin.garage,dumuc_recruitment_core.model_dumuc_garage_profile,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_verification,dumuc.access.admin.verification,dumuc_recruitment_core.model_dumuc_garage_verification,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_member,dumuc.access.admin.member,dumuc_recruitment_core.model_dumuc_garage_member,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_garage_stats,dumuc.access.admin.garage.stats,dumuc_recruitment_core.model_dumuc_garage_stats,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+
+# Candidate domain
+access_admin_candidate,dumuc.access.admin.candidate,dumuc_recruitment_core.model_dumuc_candidate_profile,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_experience,dumuc.access.admin.experience,dumuc_recruitment_core.model_dumuc_candidate_experience,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_education,dumuc.access.admin.education,dumuc_recruitment_core.model_dumuc_candidate_education,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_certification,dumuc.access.admin.certification,dumuc_recruitment_core.model_dumuc_candidate_certification,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_portfolio,dumuc.access.admin.portfolio,dumuc_recruitment_core.model_dumuc_candidate_portfolio,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_savedjob,dumuc.access.admin.savedjob,dumuc_recruitment_core.model_dumuc_candidate_saved_job,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_availability,dumuc.access.admin.availability,dumuc_recruitment_core.model_dumuc_candidate_availability,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_kyc,dumuc.access.admin.kyc,dumuc_recruitment_core.model_dumuc_candidate_kyc,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+
+# Credit domain
+access_admin_wallet,dumuc.access.admin.wallet,dumuc_recruitment_core.model_dumuc_credit_wallet,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_transaction,dumuc.access.admin.transaction,dumuc_recruitment_core.model_dumuc_credit_transaction,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_package,dumuc.access.admin.package,dumuc_recruitment_core.model_dumuc_credit_package,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_service,dumuc.access.admin.service,dumuc_recruitment_core.model_dumuc_credit_service,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_invoice,dumuc.access.admin.invoice,dumuc_recruitment_core.model_dumuc_credit_invoice,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_subscription,dumuc.access.admin.subscription,dumuc_recruitment_core.model_dumuc_garage_subscription,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+
+# Taxonomy domain
+access_admin_industry,dumuc.access.admin.industry,dumuc_recruitment_core.model_dumuc_industry,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_category,dumuc.access.admin.category,dumuc_recruitment_core.model_dumuc_category,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_position,dumuc.access.admin.position,dumuc_recruitment_core.model_dumuc_position,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_skill_category,dumuc.access.admin.skillcat,dumuc_recruitment_core.model_dumuc_skill_category,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_skill_detail,dumuc.access.admin.skilldetail,dumuc_recruitment_core.model_dumuc_skill_detail,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_skill_tag,dumuc.access.admin.skilltag,dumuc_recruitment_core.model_dumuc_skill_tag,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+
+# Governance domain
+access_admin_moderation,dumuc.access.admin.moderation,dumuc_recruitment_core.model_dumuc_moderation_record,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_activity,dumuc.access.admin.activity,dumuc_recruitment_core.model_dumuc_activity_log,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_api,dumuc.access.admin.api,dumuc_recruitment_core.model_dumuc_api_log,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+
+# Analytics domain
+access_admin_jobstats,dumuc.access.admin.jobstats,dumuc_recruitment_core.model_dumuc_job_stats,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_garagestats,dumuc.access.admin.garagestats,dumuc_recruitment_core.model_dumuc_analytics_garage_stats,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_creditstats,dumuc.access.admin.creditstats,dumuc_recruitment_core.model_dumuc_credit_stats,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_categorystats,dumuc.access.admin.categorystats,dumuc_recruitment_core.model_dumuc_category_stats,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+access_admin_dashboard,dumuc.access.admin.dashboard,dumuc_recruitment_core.model_dumuc_analytics_dashboard,dumuc_recruitment_core.group_dumuc_admin,1,1,1,1
+
+# ========== ROLE-SPECIFIC ==========
+
+# Employer
+access_employer_wallet,dumuc.access.employer.wallet,dumuc_recruitment_core.model_dumuc_credit_wallet,dumuc_recruitment_core.group_dumuc_employer,1,1,0,0
+access_employer_job,dumuc.access.employer.job,hr.model_hr_job,dumuc_recruitment_core.group_dumuc_employer,1,1,1,0
+
+# Candidate
+access_candidate_profile_full,dumuc.access.candidate.profile.full,dumuc_recruitment_core.model_dumuc_candidate_profile,dumuc_recruitment_core.group_dumuc_candidate,1,1,1,0
+access_candidate_kyc_full,dumuc.access.candidate.kyc.full,dumuc_recruitment_core.model_dumuc_candidate_kyc,dumuc_recruitment_core.group_dumuc_candidate,1,1,1,0
+
+# Moderator
+access_moderator_moderation,dumuc.access.moderator.moderation,dumuc_recruitment_core.model_dumuc_moderation_record,dumuc_recruitment_core.group_dumuc_moderator,1,1,1,1

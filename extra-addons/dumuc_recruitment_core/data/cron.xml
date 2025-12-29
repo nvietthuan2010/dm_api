@@ -1,0 +1,48 @@
+<odoo>
+    
+    <!-- ===========================
+         AUTO EXPIRE JOB POSTS
+         Run daily at 00:30
+    ============================ -->
+    <record id="cron_job_auto_expire" model="ir.cron">
+        <field name="name">Auto expire job posts</field>
+        <field name="model_id" ref="hr.model_hr_job"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_auto_expire()</field>
+        <field name="active">True</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="nextcall">2025-01-01 00:30:00</field>
+    </record>
+
+    <!-- ===========================
+         UPDATE ANALYTICS DASHBOARD
+         Run hourly
+    ============================ -->
+    <record id="cron_update_analytics" model="ir.cron">
+        <field name="name">Update Analytics Dashboard</field>
+        <field name="model_id" ref="dumuc_recruitment_core.model_dumuc_analytics_dashboard"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_update_dashboard()</field>
+        <field name="active">True</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
+        <field name="nextcall">2025-01-01 01:00:00</field>
+    </record>
+
+    <!-- ===========================
+         CLEANUP API LOG
+         Run weekly
+    ============================ -->
+    <record id="cron_api_log_cleanup" model="ir.cron">
+        <field name="name">Cleanup old API logs</field>
+        <field name="model_id" ref="dumuc_recruitment_core.model_dumuc_api_log"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_cleanup()</field>
+        <field name="active">True</field>
+        <field name="interval_number">7</field>
+        <field name="interval_type">days</field>
+        <field name="nextcall">2025-01-07 02:00:00</field>
+    </record>
+
+</odoo>

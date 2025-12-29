@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="dumuc_admin_dashboard_templates" xml:space="preserve">
+
+    <t t-name="dumuc_admin_dashboard">
+        <div class="o_container p-3">
+            <h2>Bảng điều khiển kiểm duyệt DuMuc</h2>
+
+            <!-- KPI BAR: kiểm tra state.counts tồn tại và là object -->
+            <div class="row my-3">
+                <t t-if="state &amp;&amp; state.counts">
+                    <t t-foreach="Object.keys(state.counts)" t-as="k" t-key="k">
+                        <div class="col-2">
+                            <div class="border rounded p-2 bg-light text-center">
+                                <h3 t-esc="state.counts[k]"/>
+                                <span t-esc="k"/>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </div>
+
+            <!-- Pending Listings: kiểm tra state.pending_items tồn tại -->
+            <h4>Tin chờ duyệt</h4>
+            <div class="row">
+                <t t-if="state &amp;&amp; state.pending_items &amp;&amp; state.pending_items.length">
+                    <t t-foreach="state.pending_items" t-as="l" t-key="l.id">
+                        <div class="col-4 mb-3">
+                            <div class="card shadow-sm">
+                                <img t-if="l.cover_image"
+                                     t-att-src="'data:image/png;base64,' + l.cover_image"
+                                     class="card-img-top"/>
+                                <div class="card-body">
+                                    <h5 t-esc="l.title"/>
+                                    <p>
+                                        Giá: <t t-esc="l.price"/><br/>
+                                        Người bán: <t t-esc="l.seller"/>
+                                    </p>
+                                    <button class="btn btn-success btn-sm"
+                                            t-att-data-id="l.id"
+                                            t-on-click="approveListing">Duyệt</button>
+                                    <button class="btn btn-danger btn-sm"
+                                            t-att-data-id="l.id"
+                                            t-on-click="rejectListing">Từ chối</button>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+                <t t-if="!(state &amp;&amp; state.pending_items &amp;&amp; state.pending_items.length)">
+                    <div class="col-12">
+                        <div class="alert alert-secondary">Không có tin chờ duyệt</div>
+                    </div>
+                </t>
+            </div>
+
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,54 @@
+<odoo>
+
+    <!-- Garage Tree -->
+    <record id="view_garage_tree" model="ir.ui.view">
+        <field name="name">dumuc.garage.profile.tree</field>
+        <field name="model">dumuc.garage.profile</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="owner_id"/>
+                <field name="verified"/>
+                <field name="website"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Garage Form -->
+    <record id="view_garage_form" model="ir.ui.view">
+        <field name="name">dumuc.garage.profile.form</field>
+        <field name="model">dumuc.garage.profile</field>
+        <field name="arch" type="xml">
+            <form string="Hồ sơ Garage">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="owner_id"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                        <field name="website"/>
+                        <field name="verified"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Địa chỉ">
+                            <field name="address"/>
+                        </page>
+                        <page string="Xác thực">
+                            <field name="verification_ids"/>
+                        </page>
+                        <page string="Nhân sự">
+                            <field name="member_ids"/>
+                        </page>
+                        <page string="Tin tuyển dụng">
+                            <field name="job_ids"/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

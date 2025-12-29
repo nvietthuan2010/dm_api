@@ -1,0 +1,48 @@
+<odoo>
+
+    <!-- ======================== GROUPS ======================== -->
+
+    <!-- Super Admin Group -->
+    <record id="group_dumuc_admin" model="res.groups">
+        <field name="name">DuMuc Admin</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <!-- Moderator Group -->
+    <record id="group_dumuc_moderator" model="res.groups">
+        <field name="name">DuMuc Moderator</field>
+        <field name="implied_ids" eval="[(4, ref('group_dumuc_admin'))]"/>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <!-- Employer / Garage -->
+    <record id="group_dumuc_employer" model="res.groups">
+        <field name="name">DuMuc Employer</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <!-- Candidate -->
+    <record id="group_dumuc_candidate" model="res.groups">
+        <field name="name">DuMuc Candidate</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <!-- ======================== RECORD RULES ======================== -->
+
+    <!-- Employer can manage only own garage -->
+    <record id="rule_employer_own_garage" model="ir.rule">
+        <field name="name">Employer: Own Garage</field>
+        <field name="model_id" ref="model_dumuc_garage_profile"/>
+        <field name="domain_force">[('owner_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('dumuc_recruitment_core.group_dumuc_employer'))]"/>
+    </record>
+
+    <!-- Candidate can only manage own profile -->
+    <record id="rule_candidate_own_profile" model="ir.rule">
+        <field name="name">Candidate: Own Profile</field>
+        <field name="model_id" ref="model_dumuc_candidate_profile"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('dumuc_recruitment_core.group_dumuc_candidate'))]"/>
+    </record>
+
+</odoo>

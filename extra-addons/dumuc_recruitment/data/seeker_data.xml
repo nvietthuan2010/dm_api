@@ -1,0 +1,23 @@
+<odoo>
+<data noupdate="1">
+    <record id="demo_seeker_01" model="dumuc.seeker">
+        <field name="full_name">Nguyễn Văn A</field>
+        <field name="email">nguyenvana@email.com</field>
+        <field name="phone">0901234567</field>
+        <field name="headline">Kỹ thuật viên hệ thống điện</field>
+        <field name="exp_years">5</field>
+        <field name="location">Hà Nội</field>
+        <field name="category_id" ref="dumuc_recruitment.job_category_garage"/>
+    </record>
+
+    <record id="demo_seeker_02" model="dumuc.seeker">
+        <field name="full_name">Trần Văn B</field>
+        <field name="email">tranvanb@email.com</field>
+        <field name="phone">0907654321</field>
+        <field name="headline">Tài xế container 10 năm kinh nghiệm</field>
+        <field name="exp_years">10</field>
+        <field name="location">TP.HCM</field>
+        <field name="category_id" ref="dumuc_recruitment.job_category_driver"/>
+    </record>
+</data>
+</odoo>

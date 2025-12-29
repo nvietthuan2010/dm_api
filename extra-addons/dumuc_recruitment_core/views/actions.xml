@@ -1,0 +1,119 @@
+<odoo>
+
+    <!-- ================== Recruitment Actions ================== -->
+
+    <record id="action_job" model="ir.actions.act_window">
+        <field name="name">Tin tuyển dụng</field>
+        <field name="res_model">hr.job</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_applicant" model="ir.actions.act_window">
+        <field name="name">Ứng viên ứng tuyển</field>
+        <field name="res_model">hr.applicant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- ================== Employer Actions ================== -->
+
+    <record id="action_garage_profile" model="ir.actions.act_window">
+        <field name="name">Garage</field>
+        <field name="res_model">dumuc.garage.profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_garage_verification" model="ir.actions.act_window">
+        <field name="name">Xác thực Garage</field>
+        <field name="res_model">dumuc.garage.verification</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- ================== Candidate Actions ================== -->
+
+    <record id="action_candidate_profile" model="ir.actions.act_window">
+        <field name="name">Hồ sơ ứng viên</field>
+        <field name="res_model">dumuc.candidate.profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- ================== Credit Actions ================== -->
+
+    <record id="action_credit_wallet" model="ir.actions.act_window">
+        <field name="name">Ví tín dụng</field>
+        <field name="res_model">dumuc.credit.wallet</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_credit_package" model="ir.actions.act_window">
+        <field name="name">Gói tín dụng</field>
+        <field name="res_model">dumuc.credit.package</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_credit_service" model="ir.actions.act_window">
+        <field name="name">Dịch vụ tiêu tín dụng</field>
+        <field name="res_model">dumuc.credit.service</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_credit_invoice" model="ir.actions.act_window">
+        <field name="name">Hóa đơn</field>
+        <field name="res_model">dumuc.credit.invoice</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- ================== Taxonomy Actions ================== -->
+
+    <record id="action_industry" model="ir.actions.act_window">
+        <field name="name">Ngành nghề</field>
+        <field name="res_model">dumuc.industry</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_category" model="ir.actions.act_window">
+        <field name="name">Phân loại</field>
+        <field name="res_model">dumuc.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_position" model="ir.actions.act_window">
+        <field name="name">Vị trí</field>
+        <field name="res_model">dumuc.position</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_skill" model="ir.actions.act_window">
+        <field name="name">Kỹ năng</field>
+        <field name="res_model">dumuc.skill.detail</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- ================== Governance Actions ================== -->
+
+    <record id="action_moderation" model="ir.actions.act_window">
+        <field name="name">Lịch sử kiểm duyệt</field>
+        <field name="res_model">dumuc.moderation.record</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_activity_log" model="ir.actions.act_window">
+        <field name="name">Nhật ký hoạt động</field>
+        <field name="res_model">dumuc.activity.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- ================== Analytics Actions ================== -->
+
+    <record id="action_analytics_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">dumuc.analytics.dashboard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,10 @@
+<odoo>
+    <data noupdate="1">
+        <record id="application_demo" model="dumuc.application">
+            <field name="job_id" ref="job_active"/>
+            <field name="seeker_id" ref="seeker_demo"/>
+            <field name="state">new</field>
+            <field name="cover_letter">Tôi có kinh nghiệm phù hợp</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_listing_moderation_list" model="ir.ui.view">
+        <field name="name">dumuc.listing.moderation.list</field>
+        <field name="model">dumuc.listing</field>
+        <field name="arch" type="xml">
+            <tree create="false" decoration-muted="state == 'rejected'">
+                
+                <field name="name" string="Tiêu đề"/>
+                
+                <field name="partner_id" widget="many2one_avatar"/>
+                
+                <field name="currency_id" column_invisible="True"/>
+                <field name="price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                
+                <field name="state" widget="badge" 
+                       decoration-info="state == 'pending'" 
+                       decoration-success="state == 'active'" 
+                       decoration-danger="state == 'rejected'"/>
+
+                <button name="action_approve"
+                        string="Duyệt"
+                        type="object"
+                        class="btn-success"
+                        icon="fa-check"
+                        groups="dumuc_marketplace.group_dumuc_moderator,dumuc_marketplace.group_dumuc_admin"
+                        invisible="state != 'pending'"/>
+
+                <button name="action_reject"
+                        string="Từ chối"
+                        type="object"
+                        class="btn-danger"
+                        icon="fa-times"
+                        groups="dumuc_marketplace.group_dumuc_moderator,dumuc_marketplace.group_dumuc_admin"
+                        invisible="state != 'pending'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_moderator_listing_pending" model="ir.actions.act_window">
+        <field name="name">Tin chờ duyệt</field>
+        <field name="res_model">dumuc.listing</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state','=','pending')]</field>
+        <field name="view_id" ref="view_listing_moderation_list"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Không có tin nào đang chờ duyệt!
+            </p>
+        </field>
+    </record>
+
+    <record id="action_moderator_listing_rejected" model="ir.actions.act_window">
+        <field name="name">Lịch sử Từ chối</field>
+        <field name="res_model">dumuc.listing</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state','=','rejected')]</field>
+        <field name="view_id" ref="view_listing_moderation_list"/>
+    </record>
+</odoo>

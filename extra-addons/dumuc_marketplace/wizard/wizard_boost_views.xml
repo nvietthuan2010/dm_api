@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_wizard_listing_boost_form" model="ir.ui.view">
+    <field name="name">dumuc.listing.boost.wizard.form</field>
+    <field name="model">dumuc.listing.boost.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Đẩy tin / Tin nổi bật">
+        <group>
+          <field name="listing_id" readonly="1"/>
+          <field name="package_id"/>
+          <field name="duration_days" readonly="1"/>
+          <field name="amount" readonly="1"/>
+        </group>
+        <footer>
+          <button string="Hủy" class="btn-default" special="cancel"/>
+          <button string="Xác nhận thanh toán" type="object" name="action_confirm_boost" class="btn-primary"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_open_listing_boost_wizard" model="ir.actions.act_window">
+    <field name="name">Đẩy tin</field>
+    <field name="res_model">dumuc.listing.boost.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="context">{'default_listing_id': active_id}</field>
+  </record>
+</odoo>

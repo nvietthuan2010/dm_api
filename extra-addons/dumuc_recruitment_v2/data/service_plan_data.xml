@@ -1,0 +1,24 @@
+<odoo>
+    <data noupdate="1">
+        <record id="service_post_job" model="dumuc.service.plan">
+            <field name="code">POST_JOB</field>
+            <field name="name">Đăng tin tuyển dụng</field>
+            <field name="credit_cost">10</field>
+            <field name="description">Đăng 1 tin tuyển dụng trong 30 ngày</field>
+        </record>
+
+        <record id="service_view_seeker" model="dumuc.service.plan">
+            <field name="code">VIEW_SEEKER</field>
+            <field name="name">Xem hồ sơ ứng viên</field>
+            <field name="credit_cost">5</field>
+            <field name="description">Xem toàn bộ thông tin 1 hồ sơ ứng viên</field>
+        </record>
+
+        <record id="service_feature_job" model="dumuc.service.plan">
+            <field name="code">FEATURE_JOB</field>
+            <field name="name">Làm nổi bật tin đăng</field>
+            <field name="credit_cost">15</field>
+            <field name="description">Làm nổi bật tin đăng trong 7 ngày</field>
+        </record>
+    </data>
+</odoo>

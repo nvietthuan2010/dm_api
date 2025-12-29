@@ -1,0 +1,23 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+dumuc_listing_user,dumuc.listing user,model_dumuc_listing,base.group_user,1,1,1,0
+dumuc_listing_admin,dumuc.listing admin,model_dumuc_listing,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+
+dumuc_vehicle_brand_admin,dumuc.vehicle.brand admin,model_dumuc_vehicle_brand,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+dumuc_vehicle_model_admin,dumuc.vehicle.model admin,model_dumuc_vehicle_model,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+dumuc_listing_reject_reason_admin,dumuc.listing.reject.reason admin,model_dumuc_listing_reject_reason,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+dumuc_listing_image_admin,dumuc.listing.image admin,model_dumuc_listing_image,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+dumuc_listing_history_admin,dumuc.listing.history admin,model_dumuc_listing_history,dumuc_marketplace.group_dumuc_admin,1,0,0,0
+
+dumuc_service_package_admin,dumuc.service.package admin,model_dumuc_service_package,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+dumuc_transaction_admin,dumuc.transaction admin,model_dumuc_transaction,dumuc_marketplace.group_dumuc_admin,1,1,1,0
+dumuc_violation_admin,dumuc.listing.violation admin,model_dumuc_listing_violation,dumuc_marketplace.group_dumuc_admin,1,1,1,0
+dumuc_inspection_booking_admin,dumuc.inspection.booking admin,model_dumuc_inspection_booking,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+dumuc_inspection_result_admin,dumuc.inspection.result admin,model_dumuc_inspection_result,dumuc_marketplace.group_dumuc_admin,1,1,1,0
+dumuc_inspection_result_line_admin,dumuc.inspection.result.line admin,model_dumuc_inspection_result_line,dumuc_marketplace.group_dumuc_admin,1,1,1,0
+dumuc_evaluator_review_admin,dumuc.evaluator.review admin,model_dumuc_evaluator_review,dumuc_marketplace.group_dumuc_admin,1,1,1,0
+dumuc_inspection_template_admin,Template Admin,model_dumuc_inspection_template,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+dumuc_inspection_group_admin,Group Admin,model_dumuc_inspection_group,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+dumuc_inspection_criteria_admin,Criteria Admin,model_dumuc_inspection_criteria,dumuc_marketplace.group_dumuc_admin,1,1,1,1
+
+access_dumuc_listing_reject_wizard,dumuc.listing.reject.wizard,model_dumuc_listing_reject_wizard,,1,1,1,1
+access_dumuc_listing_boost_wizard,dumuc.listing.boost.wizard,model_dumuc_listing_boost_wizard,,1,1,1,1

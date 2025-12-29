@@ -1,0 +1,34 @@
+<odoo>
+
+    <record id="view_wallet_tree" model="ir.ui.view">
+        <field name="name">dumuc.wallet.tree</field>
+        <field name="model">dumuc.credit.wallet</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="garage_id"/>
+                <field name="balance"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_wallet_form" model="ir.ui.view">
+        <field name="name">dumuc.wallet.form</field>
+        <field name="model">dumuc.credit.wallet</field>
+        <field name="arch" type="xml">
+            <form string="Ví tín dụng">
+                <sheet>
+                    <group>
+                        <field name="garage_id"/>
+                        <field name="balance" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Lịch sử">
+                            <field name="transaction_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

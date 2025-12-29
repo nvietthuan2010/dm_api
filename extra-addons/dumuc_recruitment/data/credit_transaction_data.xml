@@ -1,0 +1,10 @@
+<odoo>
+    <data noupdate="1">
+    <record id="transaction_01" model="dumuc.credit.transaction">
+        <field name="company_id" ref="dumuc_recruitment.demo_company_01"/>
+        <field name="type">topup</field>
+        <field name="amount">120</field>
+        <field name="balance_after">120</field>
+    </record>
+    </data>
+</odoo>

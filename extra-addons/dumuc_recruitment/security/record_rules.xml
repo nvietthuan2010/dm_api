@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===================== ADMIN ===================== -->
+    <record id="rule_job_admin" model="ir.rule">
+        <field name="name">Job Admin Access</field>
+        <field name="model_id" ref="model_dumuc_job"/>
+        <field name="groups" eval="[(4, ref('dumuc_recruitment.group_dumuc_recruit_admin'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+    <!-- ===================== EMPLOYER ===================== -->
+
+    <!-- Employer: view own jobs -->
+    <record id="rule_job_employer_view" model="ir.rule">
+        <field name="name">Job Employer Access</field>
+        <field name="model_id" ref="model_dumuc_job"/>
+        <field name="groups" eval="[(4, ref('dumuc_recruitment.group_dumuc_recruit_employer'))]"/>
+        <field name="domain_force">[('employer_id', '=', user.id)]</field>
+    </record>
+
+    <!-- Employer: view company -->
+    <record id="rule_company_employer" model="ir.rule">
+        <field name="name">Company Employer Access</field>
+        <field name="model_id" ref="model_dumuc_company"/>
+        <field name="groups" eval="[(4, ref('dumuc_recruitment.group_dumuc_recruit_employer'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+    </record>
+
+    <!-- Employer: view applications to their jobs -->
+    <record id="rule_application_employer" model="ir.rule">
+        <field name="name">Application Employer Access</field>
+        <field name="model_id" ref="model_dumuc_job_application"/>
+        <field name="groups" eval="[(4, ref('dumuc_recruitment.group_dumuc_recruit_employer'))]"/>
+        <field name="domain_force">[('job_id.employer_id', '=', user.id)]</field>
+    </record>
+
+    <!-- ===================== SEEKER ===================== -->
+
+    <!-- Seeker: view own seeker record -->
+    <record id="rule_seeker_owner" model="ir.rule">
+        <field name="name">Seeker Owner Access</field>
+        <field name="model_id" ref="model_dumuc_seeker"/>
+        <field name="groups" eval="[(4, ref('dumuc_recruitment.group_dumuc_recruit_seeker'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+    </record>
+
+    <!-- Seeker: view own applications -->
+    <record id="rule_application_seeker" model="ir.rule">
+        <field name="name">Application Seeker Access</field>
+        <field name="model_id" ref="model_dumuc_job_application"/>
+        <field name="groups" eval="[(4, ref('dumuc_recruitment.group_dumuc_recruit_seeker'))]"/>
+        <field name="domain_force">[('seeker_id.user_id', '=', user.id)]</field>
+    </record>
+
+</odoo>

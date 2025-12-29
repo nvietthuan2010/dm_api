@@ -1,0 +1,124 @@
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="menu_dumuc_root"
+              name="Du Muc Việc Làm"
+              sequence="5"
+              />
+
+    <!-- ================== Tuyển dụng ================== -->
+    <menuitem id="menu_dumuc_recruitment"
+              name="Tuyển dụng"
+              parent="menu_dumuc_root"/>
+
+    <menuitem id="menu_dumuc_recruitment_jobs"
+              name="Tin tuyển dụng"
+              parent="menu_dumuc_recruitment"
+              action="hr.open_view_job_all"/>
+
+    <menuitem id="menu_dumuc_recruitment_applicants"
+              name="Ứng viên ứng tuyển"
+              parent="menu_dumuc_recruitment"
+              action="hr.open_view_applicant_all"/>
+
+    <!-- ================== Nhà tuyển dụng ================== -->
+    <menuitem id="menu_dumuc_employer"
+              name="Nhà tuyển dụng"
+              parent="menu_dumuc_root"/>
+
+    <menuitem id="menu_dumuc_employer_profile"
+              name="Hồ sơ Garage"
+              parent="menu_dumuc_employer"
+              action="dumuc_recruitment_core.action_garage_profile"/>
+
+    <menuitem id="menu_dumuc_employer_verification"
+              name="Xác thực Garage"
+              parent="menu_dumuc_employer"
+              action="dumuc_recruitment_core.action_garage_verification"/>
+
+    <!-- ================== Ứng viên ================== -->
+    <menuitem id="menu_dumuc_candidate"
+              name="Ứng viên"
+              parent="menu_dumuc_root"/>
+
+    <menuitem id="menu_dumuc_candidate_profile"
+              name="Hồ sơ ứng viên"
+              parent="menu_dumuc_candidate"
+              action="dumuc_recruitment_core.action_candidate_profile"/>
+
+    <!-- ================== Tín dụng ================== -->
+    <menuitem id="menu_dumuc_credit"
+              name="Tín dụng"
+              parent="menu_dumuc_root"/>
+
+    <menuitem id="menu_dumuc_credit_wallet"
+              name="Ví tín dụng"
+              parent="menu_dumuc_credit"
+              action="dumuc_recruitment_core.action_credit_wallet"/>
+
+    <menuitem id="menu_dumuc_credit_package"
+              name="Gói tín dụng"
+              parent="menu_dumuc_credit"
+              action="dumuc_recruitment_core.action_credit_package"/>
+
+    <menuitem id="menu_dumuc_credit_service"
+              name="Dịch vụ"
+              parent="menu_dumuc_credit"
+              action="dumuc_recruitment_core.action_credit_service"/>
+
+    <menuitem id="menu_dumuc_credit_invoice"
+              name="Hóa đơn"
+              parent="menu_dumuc_credit"
+              action="dumuc_recruitment_core.action_credit_invoice"/>
+
+    <!-- ================== Taxonomy ================== -->
+    <menuitem id="menu_dumuc_taxonomy"
+              name="Danh mục & kỹ năng"
+              parent="menu_dumuc_root"/>
+
+    <menuitem id="menu_dumuc_taxonomy_industry"
+              name="Ngành nghề"
+              parent="menu_dumuc_taxonomy"
+              action="dumuc_recruitment_core.action_industry"/>
+
+    <menuitem id="menu_dumuc_taxonomy_category"
+              name="Phân loại"
+              parent="menu_dumuc_taxonomy"
+              action="dumuc_recruitment_core.action_category"/>
+
+    <menuitem id="menu_dumuc_taxonomy_position"
+              name="Vị trí"
+              parent="menu_dumuc_taxonomy"
+              action="dumuc_recruitment_core.action_position"/>
+
+    <menuitem id="menu_dumuc_taxonomy_skill"
+              name="Kỹ năng"
+              parent="menu_dumuc_taxonomy"
+              action="dumuc_recruitment_core.action_skill"/>
+
+    <!-- ================== Governance ================== -->
+    <menuitem id="menu_dumuc_governance"
+              name="Kiểm duyệt"
+              parent="menu_dumuc_root"/>
+
+    <menuitem id="menu_dumuc_governance_moderation"
+              name="Lịch sử kiểm duyệt"
+              parent="menu_dumuc_governance"
+              action="dumuc_recruitment_core.action_moderation"/>
+
+    <menuitem id="menu_dumuc_governance_log"
+              name="Nhật ký hoạt động"
+              parent="menu_dumuc_governance"
+              action="dumuc_recruitment_core.action_activity_log"/>
+
+    <!-- ================== Analytics ================== -->
+    <menuitem id="menu_dumuc_analytics"
+              name="Analytics"
+              parent="menu_dumuc_root"/>
+
+    <menuitem id="menu_dumuc_analytics_dashboard"
+              name="Dashboard"
+              parent="menu_dumuc_analytics"
+              action="dumuc_recruitment_core.action_analytics_dashboard"/>
+
+</odoo>

@@ -1,0 +1,56 @@
+<odoo>
+
+    <!-- Admin -->
+
+    <menuitem id="dumuc_admin_root"
+              name="DuMuc Admin"
+              groups="dumuc_marketplace.group_dumuc_admin"
+              sequence="10"/>
+
+    <menuitem id="dumuc_admin_dashboard"
+              name="Dashboard"
+              parent="dumuc_admin_root"/>
+
+    <menuitem id="dumuc_admin_listing_all"
+              name="Quản lý tin đăng"
+              parent="dumuc_admin_root"
+              action="dumuc_marketplace.action_dumuc_listing"/>
+
+    <menuitem id="dumuc_admin_moderation"
+              name="Kiểm duyệt tin"
+              parent="dumuc_admin_root"
+              action="action_admin_listing_pending"/>
+
+    <menuitem id="dumuc_admin_inspection"
+              name="Kiểm định"
+              parent="dumuc_admin_root"
+              action="action_admin_inspection_booking"/>
+
+    <menuitem id="dumuc_admin_users"
+              name="Người dùng"
+              parent="dumuc_admin_root"
+              action="action_dumuc_admin_users"/>
+
+    <menuitem id="dumuc_admin_finance"
+              name="Tài chính"
+              parent="dumuc_admin_root"
+              action="action_admin_transaction"/>
+
+    <!-- Kiểm Duyệt viên -->
+    
+    <menuitem id="dumuc_moderator_root"
+              name="DuMuc Kiểm duyệt"
+              groups="dumuc_marketplace.group_dumuc_moderator"
+              sequence="11"/>
+
+    <menuitem id="dumuc_moderator_pending"
+              name="Tin chờ duyệt"
+              parent="dumuc_moderator_root"
+              action="action_moderator_listing_pending"/>
+
+    <menuitem id="dumuc_moderator_rejected"
+              name="Tin bị từ chối"
+              parent="dumuc_moderator_root"
+              action="action_moderator_listing_rejected"/>
+
+</odoo>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Credit Package -->
+    <record id="view_credit_package_tree" model="ir.ui.view">
+        <field name="name">dumuc.credit.package.tree</field>
+        <field name="model">dumuc.credit.package</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="price_vnd"/>
+                <field name="credits"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_credit_package_form" model="ir.ui.view">
+        <field name="name">dumuc.credit.package.form</field>
+        <field name="model">dumuc.credit.package</field>
+        <field name="arch" type="xml">
+            <form string="Gói credit">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="price_vnd"/>
+                        <field name="credits"/>
+                        <field name="is_active"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Credit Transaction -->
+    <record id="view_credit_transaction_tree" model="ir.ui.view">
+        <field name="name">dumuc.credit.transaction.tree</field>
+        <field name="model">dumuc.credit.transaction</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="company_id"/>
+                <field name="type"/>
+                <field name="amount"/>
+                <field name="balance_after"/>
+                <field name="created_at"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_credit_transaction_form" model="ir.ui.view">
+        <field name="name">dumuc.credit.transaction.form</field>
+        <field name="model">dumuc.credit.transaction</field>
+        <field name="arch" type="xml">
+            <form string="Giao dịch credit">
+                <sheet>
+                    <group>
+                        <field name="company_id"/>
+                        <field name="type"/>
+                        <field name="amount"/>
+                        <field name="balance_after"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                        <field name="created_at"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_credit_package" model="ir.actions.act_window">
+        <field name="name">Gói credit</field>
+        <field name="res_model">dumuc.credit.package</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_credit_transaction" model="ir.actions.act_window">
+        <field name="name">Giao dịch credit</field>
+        <field name="res_model">dumuc.credit.transaction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_dumuc_credit" name="Credit"
+              parent="menu_dumuc_recruitment_root"/>
+
+    <menuitem id="menu_dumuc_credit_package"
+              name="Gói credit"
+              parent="menu_dumuc_credit"
+              action="action_credit_package"/>
+
+    <menuitem id="menu_dumuc_credit_transaction"
+              name="Giao dịch"
+              parent="menu_dumuc_credit"
+              action="action_credit_transaction"/>
+
+</odoo>

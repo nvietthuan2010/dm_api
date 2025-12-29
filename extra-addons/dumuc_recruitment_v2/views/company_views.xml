@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_dumuc_company_tree" model="ir.ui.view">
+        <field name="name">dumuc.company.tree</field>
+        <field name="model">dumuc.company</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="tax_code"/>
+                <field name="phone"/>
+                <field name="is_verified"/>
+                <field name="credit_balance"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_dumuc_company_form" model="ir.ui.view">
+        <field name="name">dumuc.company.form</field>
+        <field name="model">dumuc.company</field>
+        <field name="arch" type="xml">
+            <form string="Công ty / Garage">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="tax_code"/>
+                        <field name="address"/>
+                        <field name="phone"/>
+                        <field name="website"/>
+                    </group>
+
+                    <group>
+                        <field name="logo"/>
+                        <field name="license_file"/>
+                    </group>
+
+                    <group>
+                        <field name="is_verified"/>
+                        <field name="user_id"/>
+                        <field name="credit_balance" readonly="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Tin tuyển dụng">
+                            <field name="job_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="status"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dumuc_company" model="ir.actions.act_window">
+        <field name="name">Công ty</field>
+        <field name="res_model">dumuc.company</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_company_tree"/>
+    </record>
+
+    <menuitem id="menu_dumuc_company" name="Công ty"
+              parent="menu_dumuc_recruitment_root"
+              action="action_dumuc_company"/>
+
+</odoo>

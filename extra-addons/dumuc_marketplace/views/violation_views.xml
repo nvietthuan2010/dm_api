@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_dumuc_violation_tree" model="ir.ui.view">
+        <field name="name">dumuc.listing.violation.tree</field>
+        <field name="model">dumuc.listing.violation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="listing_id"/>
+                <field name="reporter_id"/>
+                <field name="status"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_dumuc_violation_form" model="ir.ui.view">
+        <field name="name">dumuc.listing.violation.form</field>
+        <field name="model">dumuc.listing.violation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="listing_id"/>
+                            <field name="reporter_id"/>
+                        </group>
+                        <group>
+                            <field name="status"/>
+                            <field name="create_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Report">
+                        <field name="reason"/>
+                    </group>
+                    <group string="Admin note">
+                        <field name="admin_note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dumuc_violation" model="ir.actions.act_window">
+        <field name="name">Báo cáo vi phạm</field>
+        <field name="res_model">dumuc.listing.violation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_violation_tree"/>
+    </record>
+
+</odoo>

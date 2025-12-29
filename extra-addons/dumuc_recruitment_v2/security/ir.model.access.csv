@@ -1,0 +1,22 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+# ================= CONFIG =================
+access_credit_package_admin,credit_package_admin,model_dumuc_credit_package,dumuc_recruitment.group_recruit_admin,1,1,1,1
+access_service_plan_admin,service_plan_admin,model_dumuc_service_plan,dumuc_recruitment.group_recruit_admin,1,1,1,1
+
+access_credit_package_mod,credit_package_mod,model_dumuc_credit_package,dumuc_recruitment.group_recruit_moderator,1,0,0,0
+access_service_plan_mod,service_plan_mod,model_dumuc_service_plan,dumuc_recruitment.group_recruit_moderator,1,0,0,0
+
+# ================= WALLET =================
+access_wallet_admin,wallet_admin,model_dumuc_wallet,dumuc_recruitment.group_recruit_admin,1,1,1,1
+access_wallet_tx_admin,wallet_tx_admin,model_dumuc_wallet_tx,dumuc_recruitment.group_recruit_admin,1,0,0,0
+
+access_wallet_employer,wallet_employer,model_dumuc_wallet,dumuc_recruitment.group_recruit_employer,1,0,0,0
+access_wallet_tx_employer,wallet_tx_employer,model_dumuc_wallet_tx,dumuc_recruitment.group_recruit_employer,1,0,0,0
+
+# ================= JOB / APPLICATION =================
+access_job_admin,job_admin,model_dumuc_job,dumuc_recruitment.group_recruit_admin,1,1,1,1
+access_job_employer,job_employer,model_dumuc_job,dumuc_recruitment.group_recruit_employer,1,1,1,0
+
+access_application_admin,application_admin,model_dumuc_application,dumuc_recruitment.group_recruit_admin,1,1,1,1
+access_application_seeker,application_seeker,model_dumuc_application,dumuc_recruitment.group_recruit_seeker,1,1,1,0

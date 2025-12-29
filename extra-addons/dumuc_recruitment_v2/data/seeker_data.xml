@@ -1,0 +1,15 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seeker_demo" model="dumuc.seeker">
+            <field name="user_id" ref="user_seeker"/>
+            <field name="full_name">Nguyễn Văn A</field>
+            <field name="email">a@demo.vn</field>
+            <field name="phone">0912345678</field>
+            <field name="headline">Thợ sửa xe 5 năm kinh nghiệm</field>
+            <field name="location">TP.HCM</field>
+            <field name="exp_years">5</field>
+            <field name="is_public">True</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>

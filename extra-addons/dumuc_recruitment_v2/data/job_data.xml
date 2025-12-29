@@ -1,0 +1,23 @@
+<odoo>
+    <data noupdate="1">
+        <record id="job_pending" model="dumuc.job">
+            <field name="company_id" ref="company_demo"/>
+            <field name="title">Thợ sửa xe máy</field>
+            <field name="description">Cần thợ sửa xe có kinh nghiệm</field>
+            <field name="salary_min">8000000</field>
+            <field name="salary_max">12000000</field>
+            <field name="location">Quận 1</field>
+            <field name="state">pending</field>
+        </record>
+
+        <record id="job_active" model="dumuc.job">
+            <field name="company_id" ref="company_demo"/>
+            <field name="title">Thợ rửa xe</field>
+            <field name="description">Làm việc theo ca</field>
+            <field name="salary_min">6000000</field>
+            <field name="salary_max">9000000</field>
+            <field name="location">Quận 3</field>
+            <field name="state">active</field>
+        </record>
+    </data>
+</odoo>

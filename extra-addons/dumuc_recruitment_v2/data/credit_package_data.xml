@@ -1,0 +1,35 @@
+<odoo>
+    <data noupdate="1">
+        <record id="credit_package_startup" model="dumuc.credit.package">
+            <field name="code">STARTUP</field>
+            <field name="name">Gói Start-up</field>
+            <field name="price_vnd">500000</field>
+            <field name="credit_amount">50</field>
+            <field name="description">Phù hợp cho garage mới bắt đầu</field>
+        </record>
+
+        <record id="credit_package_professional" model="dumuc.credit.package">
+            <field name="code">PROFESSIONAL</field>
+            <field name="name">Gói Professional</field>
+            <field name="price_vnd">1000000</field>
+            <field name="credit_amount">120</field>
+            <field name="description">Tiết kiệm 20% - Phù hợp cho garage vừa và nhỏ</field>
+        </record>
+
+        <record id="credit_package_enterprise" model="dumuc.credit.package">
+            <field name="code">ENTERPRISE</field>
+            <field name="name">Gói Enterprise</field>
+            <field name="price_vnd">2000000</field>
+            <field name="credit_amount">280</field>
+            <field name="description">Tiết kiệm 30% - Phù hợp cho garage lớn</field>
+        </record>
+
+        <record id="credit_package_premium" model="dumuc.credit.package">
+            <field name="code">PREMIUM</field>
+            <field name="name">Gói Premium</field>
+            <field name="price_vnd">5000000</field>
+            <field name="credit_amount">800</field>
+            <field name="description">Tiết kiệm 40% - Ưu đãi tốt nhất</field>
+        </record>
+    </data>
+</odoo>

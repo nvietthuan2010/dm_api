@@ -1,0 +1,51 @@
+<odoo>
+
+    <record id="view_candidate_tree" model="ir.ui.view">
+        <field name="name">dumuc.candidate.profile.tree</field>
+        <field name="model">dumuc.candidate.profile</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="user_id"/>
+                <field name="location"/>
+                <field name="availability"/>
+                <field name="rate_day"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_candidate_form" model="ir.ui.view">
+        <field name="name">dumuc.candidate.profile.form</field>
+        <field name="model">dumuc.candidate.profile</field>
+        <field name="arch" type="xml">
+            <form string="Ứng viên">
+                <sheet>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="location"/>
+                        <field name="availability"/>
+                        <field name="rate_day"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Giới thiệu">
+                            <field name="bio"/>
+                        </page>
+                        <page string="Kinh nghiệm">
+                            <field name="experience_ids"/>
+                        </page>
+                        <page string="Học vấn">
+                            <field name="education_ids"/>
+                        </page>
+                        <page string="Kỹ năng">
+                            <field name="skill_ids"/>
+                        </page>
+                        <page string="KYC">
+                            <field name="kyc_id"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

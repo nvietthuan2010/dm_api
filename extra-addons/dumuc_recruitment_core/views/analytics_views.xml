@@ -1,0 +1,15 @@
+<odoo>
+
+    <record id="view_analytics_tree" model="ir.ui.view">
+        <field name="name">dumuc.analytics.dashboard.tree</field>
+        <field name="model">dumuc.analytics.dashboard</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="total_jobs"/>
+                <field name="total_candidates"/>
+                <field name="total_garages"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

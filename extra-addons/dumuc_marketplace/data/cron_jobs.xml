@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ir_cron_expire_listings" model="ir.cron">
+    <field name="name">DuMuc: Expire old listings</field>
+    <field name="model_id" ref="model_dumuc_listing"/>
+    <field name="state">code</field>
+    <field name="code">model.search([('state','in',['active']),('posted_at','&lt;', (fields.Datetime.now() - relativedelta(days=30))) ]).write({'state':'expired'})</field>
+    <field name="active">True</field>
+    <field name="interval_number">1</field>
+    <field name="interval_type">days</field>
+    <field name="numbercall">-1</field>
+  </record>
+
+  <record id="ir_cron_recompute_priority" model="ir.cron">
+    <field name="name">DuMuc: Recompute priority score</field>
+    <field name="model_id" ref="model_dumuc_listing"/>
+    <field name="state">code</field>
+    <field name="code">model._compute_priority_score()</field>
+    <field name="active">True</field>
+    <field name="interval_number">6</field>
+    <field name="interval_type">hours</field>
+    <field name="numbercall">-1</field>
+  </record>
+</odoo>

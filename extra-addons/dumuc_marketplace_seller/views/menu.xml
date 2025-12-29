@@ -1,0 +1,28 @@
+<odoo>
+
+    <menuitem id="dumuc_seller_root"
+              name="DuMuc Người bán"
+              groups="dumuc_marketplace.group_dumuc_seller_private,
+                      dumuc_marketplace.group_dumuc_seller_salon"
+              sequence="20"/>
+
+    <menuitem id="dumuc_seller_dashboard"
+              name="Dashboard"
+              parent="dumuc_seller_root"/>
+
+    <menuitem id="dumuc_seller_listing_my"
+              name="Tin đăng của tôi"
+              parent="dumuc_seller_root"
+              action="action_seller_listing_my"/>
+
+    <menuitem id="dumuc_seller_listing_create"
+              name="Đăng tin mới"
+              parent="dumuc_seller_root"
+              action="action_seller_listing_create"/>
+
+    <menuitem id="dumuc_seller_saved"
+              name="Tin đã lưu"
+              parent="dumuc_seller_root"
+              action="action_seller_saved_listings"/>
+
+</odoo>

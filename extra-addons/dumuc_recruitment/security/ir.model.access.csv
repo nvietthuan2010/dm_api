@@ -1,0 +1,26 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+# ADMIN full rights
+access_job_admin,job admin,model_dumuc_job,dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+access_job_category_admin,job.category admin,model_dumuc_job_category,dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+access_skill_category_admin,skill.category admin,model_dumuc_skill_category,dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+access_skill_admin,skill admin,model_dumuc_skill,dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+access_company_admin,company admin,model_dumuc_company,dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+access_seeker_admin,seeker admin,model_dumuc_seeker,dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+access_seeker_exp_admin,seeker.experience admin,model_dumuc_seeker_experience,dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+access_application_admin,application admin,model_dumuc_job_application,dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+access_credit_package_admin,credit.package admin,model_dumuc_credit_package,dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+access_credit_transaction_admin,credit.transaction admin,model_dumuc_recruitment.group_dumuc_recruit_admin,1,1,1,1
+
+# EMPLOYER (create/edit job & company)
+access_job_employer,job employer,model_dumuc_job,dumuc_recruitment.group_dumuc_recruit_employer,1,1,1,0
+access_company_employer,company employer,model_dumuc_company,dumuc_recruitment.group_dumuc_recruit_employer,1,1,1,0
+access_application_employer,application employer,model_dumuc_job_application,dumuc_recruitment.group_dumuc_recruit_employer,1,1,0,0
+
+# JOB SEEKER
+access_job_seeker,job seeker,model_dumuc_job,dumuc_recruitment.group_dumuc_recruit_seeker,1,0,0,0
+access_application_seeker,application seeker,model_dumuc_job_application,dumuc_recruitment.group_dumuc_recruit_seeker,1,0,1,0
+
+access_geo_cache,access_geo_cache,model_dumuc_geo_cache,base.group_system,1,1,1,1
+access_recruit_config,access_recruit_config,model_dumuc_recruit_config,base.group_system,1,1,1,1
+

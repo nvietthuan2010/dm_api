@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_dumuc_evaluator_review_tree" model="ir.ui.view">
+        <field name="name">dumuc.evaluator.review.tree</field>
+        <field name="model">dumuc.evaluator.review</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="evaluator_id"/>
+                <field name="partner_id"/>
+                <field name="rating" widget="priority"/>
+                <field name="inspection_result_id"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_dumuc_evaluator_review_form" model="ir.ui.view">
+        <field name="name">dumuc.evaluator.review.form</field>
+        <field name="model">dumuc.evaluator.review</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="evaluator_id"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="rating" widget="priority"/>
+                            <field name="inspection_result_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="comment"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dumuc_evaluator_review" model="ir.actions.act_window">
+        <field name="name">Đánh giá viên</field>
+        <field name="res_model">dumuc.evaluator.review</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_evaluator_review_tree"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree view -->
+    <record id="view_dumuc_job_tree" model="ir.ui.view">
+        <field name="name">dumuc.job.tree</field>
+        <field name="model">dumuc.job</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="category_id"/>
+                <field name="salary_min"/>
+                <field name="salary_max"/>
+                <field name="salary_unit"/>
+                <field name="employment_type"/>
+                <field name="status"/>
+                <field name="is_urgent"/>
+                <field name="expires_at"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="view_dumuc_job_form" model="ir.ui.view">
+        <field name="name">dumuc.job.form</field>
+        <field name="model">dumuc.job</field>
+        <field name="arch" type="xml">
+            <form string="Tin tuyển dụng">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+
+                    <group>
+                        <field name="company_id"/>
+                        <field name="employer_id"/>
+                        <field name="category_id"/>
+                    </group>
+
+                    <group string="Lương">
+                        <field name="salary_min"/>
+                        <field name="salary_max"/>
+                        <field name="salary_unit"/>
+                    </group>
+
+                    <group>
+                        <field name="employment_type"/>
+                        <field name="location"/>
+                        <field name="quantity"/>
+                        <field name="is_urgent"/>
+                    </group>
+
+                    <group string="Thời gian">
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="expires_at"/>
+                    </group>
+
+                    <group string="Trạng thái">
+                        <field name="status"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Ứng tuyển">
+                            <field name="application_ids">
+                                <tree>
+                                    <field name="seeker_id"/>
+                                    <field name="status"/>
+                                    <field name="applied_at"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_dumuc_jobs" model="ir.actions.act_window">
+        <field name="name">Tin tuyển dụng</field>
+        <field name="res_model">dumuc.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_job_tree"/>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_dumuc_recruitment_root" name="Dumuc Recruitment"/>
+
+    <menuitem id="menu_dumuc_job" name="Tin tuyển dụng"
+              parent="menu_dumuc_recruitment_root"
+              action="action_dumuc_jobs"/>
+
+</odoo>

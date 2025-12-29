@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: Dumuc Recruitment API
+  version: 1.0.0
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: []
+
+paths:
+  /api/recruit/auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+      responses:
+        "200":
+          description: OK
+
+  /api/recruit/admin/jobs:
+    get:
+      summary: Admin list jobs
+      responses:
+        "200":
+          description: OK

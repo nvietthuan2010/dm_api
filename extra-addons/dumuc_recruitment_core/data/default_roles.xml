@@ -1,0 +1,15 @@
+<odoo>
+
+    <!-- Employer Group -->
+    <record id="default_employer_group" model="res.groups">
+        <field name="name">Employer</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <!-- Candidate Group -->
+    <record id="default_candidate_group" model="res.groups">
+        <field name="name">Candidate</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+</odoo>
