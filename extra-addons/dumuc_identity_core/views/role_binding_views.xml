@@ -1,0 +1,52 @@
+<odoo>
+
+    <record id="view_dumuc_role_binding_tree" model="ir.ui.view">
+        <field name="model">dumuc.user.role.binding</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="user_id"/>
+                <field name="module"/>
+                <field name="role"/>
+                <field name="status"/>
+                <field name="assigned_by"/>
+                <field name="write_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_dumuc_role_binding_form" model="ir.ui.view">
+        <field name="model">dumuc.user.role.binding</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group string="Thông tin vai trò Marketplace">
+                        <field name="user_id"/>
+                        <field name="module" readonly="1"/>
+                        <field name="role"/>
+                        <field name="status"/>
+                    </group>
+
+                    <group string="Quản trị">
+                        <field name="assigned_by" readonly="1"/>
+                        <field name="note"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dumuc_role_binding" model="ir.actions.act_window">
+        <field name="name">Vai trò Marketplace</field>
+        <field name="res_model">dumuc.user.role.binding</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Quản lý vai trò Marketplace được gán cho người dùng.
+            </p>
+        </field>
+        <field name="view_id" ref="view_dumuc_role_binding_tree"/>
+    </record>
+
+</odoo>

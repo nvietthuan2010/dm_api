@@ -1,0 +1,20 @@
+<odoo>
+    <menuitem id="menu_dumuc_identity_root"
+              name="DuMuc Identity"
+              sequence="10"/>
+
+    <menuitem id="menu_dumuc_identity_roles"
+              parent="menu_dumuc_identity_root"
+              name="Vai trò Marketplace"
+              action="action_dumuc_role_binding"/>
+
+    <menuitem id="menu_dumuc_identity_devices"
+              parent="menu_dumuc_identity_root"
+              name="Thiết bị đăng nhập"
+              action="action_dumuc_auth_device"/>
+
+    <menuitem id="menu_dumuc_identity_tokens"
+              parent="menu_dumuc_identity_root"
+              name="Token phiên đăng nhập"
+              action="action_dumuc_auth_token"/>
+</odoo>

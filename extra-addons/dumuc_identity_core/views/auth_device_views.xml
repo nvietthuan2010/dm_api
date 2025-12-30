@@ -1,0 +1,23 @@
+<odoo>
+
+    <record id="view_dumuc_auth_device_tree" model="ir.ui.view">
+        <field name="model">dumuc.auth.device</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="user_id"/>
+                <field name="device_type"/>
+                <field name="ip_address"/>
+                <field name="last_login_at"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_dumuc_auth_device" model="ir.actions.act_window">
+        <field name="name">Thiết bị đăng nhập</field>
+        <field name="res_model">dumuc.auth.device</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_dumuc_auth_device_tree"/>
+    </record>
+
+</odoo>

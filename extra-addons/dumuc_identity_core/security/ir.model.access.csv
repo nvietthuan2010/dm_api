@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_role_binding_admin,Role Binding Admin,model_dumuc_user_role_binding,group_dumuc_identity_admin,1,1,1,1
+access_role_binding_manager,Role Binding Manager,model_dumuc_user_role_binding,group_dumuc_role_manager,1,1,1,0
+access_role_binding_auditor,Role Binding Auditor,model_dumuc_user_role_binding,group_dumuc_identity_auditor,1,0,0,0
+
+access_auth_device_admin,Auth Device Admin,model_dumuc_auth_device,group_dumuc_identity_admin,1,1,1,1
+access_auth_device_auditor,Auth Device Auditor,model_dumuc_auth_device,group_dumuc_identity_auditor,1,0,0,0
+
+access_auth_token_admin,Auth Token Admin,model_dumuc_auth_token,group_dumuc_identity_admin,1,1,1,1
+access_auth_token_auditor,Auth Token Auditor,model_dumuc_auth_token,group_dumuc_identity_auditor,1,0,0,0
