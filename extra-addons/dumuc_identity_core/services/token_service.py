@@ -78,3 +78,22 @@ class TokenService(models.AbstractModel):
         })
 
         return raw
+
+    def validate_scope_token(self, raw, scope):
+        if not raw:
+            return None
+
+        token = self.env["dumuc.auth.token"].sudo().search([
+            ("token_hash", "=", self._hash(raw)),
+            ("scope", "=", scope),
+            ("is_active", "=", True),
+        ], limit=1)
+
+        if not token:
+            return None
+
+        if token.expire_at and token.expire_at < fields.Datetime.now():
+            token.is_active = False
+            return None
+
+        return token

@@ -1,267 +1,240 @@
 # -*- coding: utf-8 -*-
+
 from odoo import http
-from odoo.http import request
-from odoo.exceptions import UserError, AccessError
+from market_base import MarketControllerBase
+from dumuc_identity_core.controllers.helpers import api_ok, api_error, get_json
 
 
-# ---------------------------
-# Response helper
-# ---------------------------
+class SellerListingAPI(MarketControllerBase):
 
-def api_ok(data=None):
-    return {"success": True, "data": data, "error": None}
+    # ----------------------------------------------------
+    # 1) Lấy danh sách tin đăng của Seller
+    # ----------------------------------------------------
+    @http.route("/api/market/seller/listings/my", type="json", auth="public", csrf=False)
+    def my_listings(self, **kw):
 
+        ctx, err = self._auth()
+        if err:
+            return err
 
-def api_error(code, message):
-    return {
-        "success": False,
-        "data": None,
-        "error": {"code": code, "message": message}
-    }
+        user = ctx["user"]
 
+        listings = http.request.env["dumuc.listing"].sudo().search([
+            ("partner_id", "=", user.partner_id.id)
+        ])
 
-# ---------------------------
-# Helpers
-# ---------------------------
-
-def _require_seller():
-    user = request.env.user
-
-    if user.role_type not in ("private", "salon"):
-        raise AccessError("Người dùng không phải Seller")
-
-    return user
-
-
-def _ensure_owner(record, user):
-    if not record or record.partner_id.id != user.partner_id.id:
-        raise AccessError("Không có quyền thao tác trên bản ghi này")
-
-
-# ---------------------------
-# SELLER API CONTROLLER
-# ---------------------------
-
-class SellerAPI(http.Controller):
-
-    # ---------------------------
-    #  LISTING — CREATE DRAFT
-    # ---------------------------
-
-    @http.route('/api/market/seller/listing/create',
-                type='json', auth='user', methods=['POST'])
-    def create_listing(self, **payload):
-        try:
-            user = _require_seller()
-
-            vals = {
-                "name": payload.get("title"),
-                "partner_id": user.partner_id.id,
-                "price": payload.get("price"),
-                "brand_id": payload.get("brand_id"),
-                "model_id": payload.get("model_id"),
-                "year": payload.get("year"),
-                "mileage": payload.get("mileage"),
-                "description": payload.get("description"),
-                "state": "draft",
+        return api_ok([
+            {
+                "id": l.id,
+                "title": l.name,
+                "price": l.price,
+                "state": l.state,
+                "is_free_quota": l.is_free_quota,
+                "posted_at": str(l.posted_at) if l.posted_at else None,
             }
+            for l in listings
+        ])
 
-            rec = request.env["dumuc.listing"].sudo().create(vals)
 
-            return api_ok({
-                "listing_id": rec.id,
-                "state": rec.state,
-            })
+    # ----------------------------------------------------
+    # 2) Tạo tin đăng mới (Draft)
+    # ----------------------------------------------------
+    @http.route("/api/market/seller/listing/create", type="json", auth="public", csrf=False)
+    def create_listing(self, **kw):
 
-        except Exception as e:
-            return api_error("CREATE_FAILED", str(e))
+        ctx, err = self._auth()
+        if err:
+            return err
 
-    # ---------------------------
-    # UPDATE LISTING
-    # ---------------------------
+        user = ctx["user"]
+        data = get_json()
 
-    @http.route('/api/market/seller/listing/update',
-                type='json', auth='user', methods=['POST'])
-    def update_listing(self, listing_id=None, **payload):
+        Listing = http.request.env["dumuc.listing"].sudo()
+
+        rec = Listing.create({
+            "name": data.get("title"),
+            "price": data.get("price"),
+            "description": data.get("description"),
+            "partner_id": user.partner_id.id,
+            "state": "draft",
+        })
+
+        return api_ok({"id": rec.id})
+
+
+    # ----------------------------------------------------
+    # 3) Cập nhật tin (chỉ khi draft / rejected)
+    # ----------------------------------------------------
+    @http.route("/api/market/seller/listing/update", type="json", auth="public", csrf=False)
+    def update_listing(self, **kw):
+
+        ctx, err = self._auth()
+        if err:
+            return err
+
+        user = ctx["user"]
+        data = get_json()
+
+        listing_id = data.get("listing_id")
+
+        rec = http.request.env["dumuc.listing"].sudo().browse(listing_id)
+
+        if not rec or rec.partner_id.id != user.partner_id.id:
+            return api_error("ACCESS_DENIED", "Bạn không có quyền sửa tin này")
+
+        if rec.state not in ("draft", "rejected"):
+            return api_error("INVALID_STATE", "Chỉ sửa tin khi đang ở trạng thái Nháp hoặc Bị Từ Chối")
+
+        rec.write({
+            "name": data.get("title", rec.name),
+            "price": data.get("price", rec.price),
+            "description": data.get("description", rec.description),
+        })
+
+        return api_ok({"updated": True})
+
+
+    # ----------------------------------------------------
+    # 4) Gửi tin đi duyệt
+    # ----------------------------------------------------
+    @http.route("/api/market/seller/listing/submit_review", type="json", auth="public", csrf=False)
+    def submit_review(self, **kw):
+
+        ctx, err = self._auth()
+        if err:
+            return err
+
+        user = ctx["user"]
+        data = get_json()
+
+        rec = http.request.env["dumuc.listing"].sudo().browse(data.get("listing_id"))
+
+        if not rec or rec.partner_id.id != user.partner_id.id:
+            return api_error("ACCESS_DENIED", "Không được gửi duyệt tin của người khác")
+
         try:
-            user = _require_seller()
-
-            listing = request.env["dumuc.listing"].sudo().browse(listing_id)
-            _ensure_owner(listing, user)
-
-            if listing.state not in ("draft", "rejected"):
-                raise UserError("Chỉ sửa tin Nháp hoặc Bị từ chối")
-
-            allowed = ["name", "price", "description", "year", "mileage"]
-
-            listing.write({k: v for k, v in payload.items() if k in allowed})
-
-            return api_ok({"listing_id": listing.id})
-
-        except (UserError, AccessError) as e:
-            return api_error("UPDATE_DENIED", str(e))
-
-        except Exception as e:
-            return api_error("UPDATE_FAILED", str(e))
-
-    # ---------------------------
-    # SUBMIT FOR REVIEW
-    # ---------------------------
-
-    @http.route('/api/market/seller/listing/submit',
-                type='json', auth='user', methods=['POST'])
-    def submit_listing(self, listing_id):
-        try:
-            user = _require_seller()
-
-            listing = request.env["dumuc.listing"].sudo().browse(listing_id)
-            _ensure_owner(listing, user)
-
-            listing.action_submit_for_review()
-
-            return api_ok({"state": listing.state})
-
-        except UserError as e:
-            return api_error("SUBMIT_REJECTED", str(e))
-
+            rec.action_submit_for_review()
         except Exception as e:
             return api_error("SUBMIT_FAILED", str(e))
 
-    # ---------------------------
-    # MARK AS SOLD
-    # ---------------------------
+        return api_ok({"status": rec.state})
 
-    @http.route('/api/market/seller/listing/mark_sold',
-                type='json', auth='user', methods=['POST'])
-    def mark_sold(self, listing_id):
+
+    # ----------------------------------------------------
+    # 5) Đánh dấu đã bán
+    # ----------------------------------------------------
+    @http.route("/api/market/seller/listing/mark_sold", type="json", auth="public", csrf=False)
+    def mark_sold(self, **kw):
+
+        ctx, err = self._auth()
+        if err:
+            return err
+
+        user = ctx["user"]
+        data = get_json()
+
+        rec = http.request.env["dumuc.listing"].sudo().browse(data.get("listing_id"))
+
+        if not rec or rec.partner_id.id != user.partner_id.id:
+            return api_error("ACCESS_DENIED", "Không được thao tác tin của người khác")
+
+        rec.action_mark_as_sold()
+
+        return api_ok({"status": rec.state})
+
+    # ----------------------------------------------------
+    # 6) Kiểm tra trạng thái QUOTA (Số lần đăng tin miễn phí hay combo)
+    # ----------------------------------------------------
+    @http.route("/api/market/seller/quota/status", type="json", auth="public", csrf=False)
+    def quota_status(self, **kw):
+
+        ctx, err = self._auth()
+        if err:
+            return err
+
+        user = ctx["user"]
+        partner = user.partner_id.sudo()
+
+        max_free = int(
+            http.request.env["ir.config_parameter"]
+            .sudo()
+            .get_param("dumuc.max_free_posts", 5)
+        )
+
+        used = partner.dumuc_free_post_used or 0
+
+        return api_ok({
+            "max_free_posts": max_free,
+            "used_free_posts": used,
+            "remaining_free_posts": max_free - used if used < max_free else 0,
+            "has_free_post_available": used < max_free
+        })
+
+    # ----------------------------------------------------
+    # 7) Check quyền đăng tin trước khi submit
+    # ----------------------------------------------------
+    @http.route("/api/market/seller/quota/can_submit", type="json", auth="public", csrf=False)
+    def quota_check_submit(self, **kw):
+
+        ctx, err = self._auth()
+        if err:
+            return err
+
+        user = ctx["user"]
+        partner = user.partner_id.sudo()
+
+        max_free = int(
+            http.request.env["ir.config_parameter"]
+            .sudo()
+            .get_param("dumuc.max_free_posts", 5)
+        )
+
+        used = partner.dumuc_free_post_used or 0
+
+        if used >= max_free:
+            return api_error(
+                "QUOTA_EXCEEDED",
+                "Bạn đã hết lượt đăng miễn phí. Vui lòng mua gói dịch vụ."
+            )
+
+        return api_ok({
+            "can_submit": True,
+            "remaining_free_posts": max_free - used
+       
+        })
+
+    
+    # ----------------------------------------------------
+    # 8) Dùng package để đăng tin
+    # ----------------------------------------------------
+    @http.route("/api/market/seller/package/use", type="json", auth="public", csrf=False)
+    def use_package_for_listing(self, **kw):
+
+        ctx, err = self._auth()
+        if err:
+            return err
+
+        user = ctx["user"]
+        data = http.request.jsonrequest
+
+        listing = http.request.env["dumuc.listing"].sudo().browse(data.get("listing_id"))
+
+        if not listing or listing.partner_id.id != user.partner_id.id:
+            return api_error("ACCESS_DENIED", "Không thể sử dụng gói cho tin của người khác")
+
+        Usage = http.request.env["dumuc.package.usage"].sudo()
+
         try:
-            user = _require_seller()
-
-            listing = request.env["dumuc.listing"].sudo().browse(listing_id)
-            _ensure_owner(listing, user)
-
-            listing.action_mark_as_sold()
-
-            return api_ok({"state": listing.state})
-
+            usage = Usage.use_post_package(user.partner_id, listing)
         except Exception as e:
-            return api_error("MARK_SOLD_FAILED", str(e))
+            return api_error("PACKAGE_FAILED", str(e))
 
-    # ---------------------------
-    # MY LISTINGS
-    # ---------------------------
+        return api_ok({
+            "package_id": usage.package_id.id,
+            "usage_id": usage.id,
+            "listing_state": listing.state,
+            "used_from_package": True
+        })
 
-    @http.route('/api/market/seller/listing/mine',
-                type='json', auth='user', methods=['GET'])
-    def my_listings(self):
-        try:
-            user = _require_seller()
 
-            recs = request.env["dumuc.listing"].sudo().search([
-                ("partner_id", "=", user.partner_id.id)
-            ])
-
-            return api_ok([
-                {
-                    "id": r.id,
-                    "title": r.name,
-                    "state": r.state,
-                    "price": r.price,
-                    "is_featured": r.is_featured,
-                    "priority_score": r.priority_score,
-                }
-                for r in recs
-            ])
-
-        except Exception as e:
-            return api_error("FETCH_FAILED", str(e))
-
-    # ---------------------------
-    # PUSH LISTING
-    # ---------------------------
-
-    @http.route('/api/market/seller/listing/push',
-                type='json', auth='user', methods=['POST'])
-    def push(self, listing_id):
-        try:
-            user = _require_seller()
-
-            listing = request.env["dumuc.listing"].sudo().browse(listing_id)
-            _ensure_owner(listing, user)
-
-            listing.action_push()
-
-            return api_ok({"status": "pushed"})
-
-        except UserError as e:
-            return api_error("PUSH_REJECTED", str(e))
-
-        except Exception as e:
-            return api_error("PUSH_FAILED", str(e))
-
-    # ---------------------------
-    # RENEW LISTING
-    # ---------------------------
-
-    @http.route('/api/market/seller/listing/renew',
-                type='json', auth='user', methods=['POST'])
-    def renew(self, listing_id):
-        try:
-            user = _require_seller()
-
-            listing = request.env["dumuc.listing"].sudo().browse(listing_id)
-            _ensure_owner(listing, user)
-
-            listing.action_renew()
-
-            return api_ok({"status": "renewed"})
-
-        except UserError as e:
-            return api_error("RENEW_REJECTED", str(e))
-
-        except Exception as e:
-            return api_error("RENEW_FAILED", str(e))
-
-    # ---------------------------
-    # WALLET INFO
-    # ---------------------------
-
-    @http.route('/api/market/seller/wallet/info',
-                type='json', auth='user', methods=['GET'])
-    def wallet_info(self):
-        try:
-            user = _require_seller()
-
-            return api_ok({
-                "balance": user.wallet_balance,
-            })
-
-        except Exception as e:
-            return api_error("WALLET_FAILED", str(e))
-
-    # ---------------------------
-    # WALLET TRANSACTIONS
-    # ---------------------------
-
-    @http.route('/api/market/seller/wallet/transactions',
-                type='json', auth='user', methods=['GET'])
-    def wallet_transactions(self):
-        try:
-            user = _require_seller()
-
-            txs = request.env["dumuc.transaction"].sudo().search([
-                ("user_id", "=", user.id)
-            ], order="id desc")
-
-            return api_ok([
-                {
-                    "id": t.id,
-                    "type": t.type,
-                    "amount": t.amount,
-                    "status": t.status,
-                }
-                for t in txs
-            ])
-
-        except Exception as e:
-            return api_error("TX_FETCH_FAILED", str(e))
+    
